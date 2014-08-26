@@ -22,6 +22,7 @@ describe Ship do
 			expect(destroyer.elements.count).to eq(3)
 			expect(submarine.elements.count).to eq(3)
 			expect(patrol_boat.elements.count).to eq(2)
+		end
 
 		it 'can hold ship elements' do
 			expect(ship.elements.count).to eq(1)
@@ -63,6 +64,8 @@ describe Ship do
 			patrol_boat.elements[1].hit!
 			expect(patrol_boat.sunk?).to be false
 		end
+
+	end
 
 	context 'Sunk' do
 
