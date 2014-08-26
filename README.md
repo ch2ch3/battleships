@@ -15,7 +15,7 @@ Our model for Battleships consists of the following elements:
 - Ship elements (the individual parts of the ship)
 - Placement grid (the open sea!)
 - Tracking grid (tracking the shots fired by...)
-- The player
+- The players
 - A score board
 
 During gameplay, the elements will interact in the following way:
@@ -52,3 +52,11 @@ During placement
 	returns an error.
 - Otherwise the ship elements are placed at the appropriate coordinates on the
 	placement grid.
+
+ |Object name | Responsibility |
+ -------------|----------------
+ |Tracking grid | Tracking shots |
+ |Placement grid | Valid location of ship elements |
+ |Ship element | Knowing if it has been hit or not |
+ |Ship | Knowing if all of its ship elements are destroyed |
+ |Scoreboard | Knowing when the game ends |
