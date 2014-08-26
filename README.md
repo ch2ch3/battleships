@@ -1,7 +1,8 @@
 Battleships
 ===========
 
-Ethel, Andy, Spike and Dave set sail for adventure on the week 4 task at Makers, creating the game of Battleships.
+[Ethel](https://github.com/ch2ch3), [Andy](https://github.com/andy010), [Spike](https://github.com/spike01), and [Dave](https://github.com/gypsydave5) set sail for adventure on the week 4 task at
+Makers, creating the game of Battleships.
 
 Version 0 - Domain Model
 ------------------------
@@ -11,7 +12,7 @@ Our model for Battleships consists of the following elements:
 - Ships
 - Ship elements (the individual parts of the ship)
 - Placement grid (the open sea!)
-- Tracking grid (tracking thr shots fired by...)
+- Tracking grid (tracking the shots fired by...)
 - The player
 - A score board
 
@@ -19,8 +20,10 @@ During gameplay, the elements will interact in the following way:
 
 - The player will tell the tracking grid that it is firing at a grid
 	coordinate.
-- The tracking grid will then tell the placement grid that the coordinate has been.
-	fired at
+- The tracking grid will check whether those coordinates have already been fired
+	at; if so it will return an error.
+- Otherwise the tracking grid will tell the placement grid that those
+	coordinates are being fired at.
 - The placement grid will then check that location for a ship element; if none
 	is fired it returns a 'miss' message to the tracking grid, which logs the
 	coordinate as a 'miss'.
