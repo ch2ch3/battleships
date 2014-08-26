@@ -6,7 +6,6 @@ class PlacementGrid
 
 	def place(ship, x, y, orientation=:horizontal)
 		raise(ArgumentError, "Ship don't fit yo!") if ship_dont_fit?(ship, x, y, orientation)
-
 		ship.elements.each do |element|
 			@grid[x][y] = element
 			if orientation == :horizontal
@@ -23,6 +22,8 @@ class PlacementGrid
 		return true if ship.elements.count > x
 		if orientation == :horizontal
 			return true if ship.elements.count > (@grid.length - x)
+		elsif orientation == :vertical
+			return true if ship.elements.count > (@grid[x].length - y)
 		end
 	end
 
