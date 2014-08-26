@@ -1,8 +1,8 @@
-require 'ship_element'
+require './lib/ship_element'
 
 class Ship
 
-	BUILD_INFO = { 
+	JANES_FIGHTING_SHIPS = { 
 		carrier: 5,
 		battleship: 4,
 		submarine: 3,
@@ -24,9 +24,12 @@ class Ship
 	end
 
 	def build
-		BUILD_INFO[@type].times do
+		JANES_FIGHTING_SHIPS[@type].times do
 			@elements << ShipElement.new
 		end
 	end
 
+	def sunk?
+		elements.all?(&:hit)
+	end
 end

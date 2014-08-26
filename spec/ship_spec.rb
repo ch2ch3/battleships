@@ -31,4 +31,16 @@ context 'Type' do
 	end
 end
 
+context 'Sunk' do
+	it 'knows if it\'s sunk' do
+		patrol_boat.elements.each { |element| element.hit! }
+		expect(patrol_boat.sunk?).to be true
+	end
+
+	it 'knows that it\'s not sunk' do
+		patrol_boat.elements[1].hit!
+		expect(patrol_boat.sunk?).to be false
+	end
+end
+
 end
