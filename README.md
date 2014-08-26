@@ -15,7 +15,7 @@ Our model for Battleships consists of the following elements:
 - Ship elements (the individual parts of the ship)
 - Placement grid (the open sea!)
 - Tracking grid (tracking the shots fired by...)
-- The player
+- The players
 - A score board
 
 During gameplay, the elements will interact in the following way:
