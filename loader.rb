@@ -1,7 +1,8 @@
-require './lib/ship'
 require './lib/ship_element'
+require './lib/ship'
 require './lib/placement_grid'
 require './lib/tracking_grid'
+
 
 def load
 	@placement_grid = PlacementGrid.new(10, 10)

@@ -21,7 +21,6 @@ class PlacementGrid
 
 	def ship_dont_fit?(ship, x, y, orientation)
 		raise (ArgumentError) unless @grid[x][y].nil?
-		raise (ArgumentError) if ship.elements.count > x
 		if orientation == :horizontal
 			raise (ArgumentError) if ship.elements.count > (@grid.length - x)
 		elsif orientation == :vertical
