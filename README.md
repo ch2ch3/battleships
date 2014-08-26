@@ -4,6 +4,8 @@ Battleships
 [Ethel](https://github.com/ch2ch3), [Andy](https://github.com/andy010), [Spike](https://github.com/spike01), and [Dave](https://github.com/gypsydave5) set sail for adventure on the week 4 task at
 Makers, creating the game of Battleships.
 
+<iframe width="420" height="315" src="//www.youtube.com/embed/GkwMDkfrZ1M" frameborder="0" allowfullscreen></iframe>
+
 Version 0 - Domain Model
 ------------------------
 
