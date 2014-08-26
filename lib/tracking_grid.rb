@@ -10,7 +10,7 @@ class TrackingGrid
 
 	def fire_at(x,y)
 		raise "You've already fired here!" if coordinate_fired_at?(x,y)
-		@grid[x][y] = (placement_grid.hit?(x,y) ? :hit : :miss)
+		@grid[x][y] = (placement_grid.hit_at?(x,y) ? :hit : :miss)
 		self
 	end
 
