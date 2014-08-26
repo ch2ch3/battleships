@@ -2,7 +2,7 @@ require './lib/ship_element'
 
 class Ship
 
-	JANES_FIGHTING_SHIPS = { 
+	JANES_FIGHTING_SHIPS = {
 		carrier: 5,
 		battleship: 4,
 		submarine: 3,
@@ -27,6 +27,10 @@ class Ship
 		JANES_FIGHTING_SHIPS[@type].times do
 			@elements << ShipElement.new
 		end
+	end
+
+	def length
+		@elements.length
 	end
 
 	def sunk?
