@@ -31,7 +31,7 @@ class PlacementGrid
 
 	def hit_at?(x,y)
 		return false if @grid[x][y].nil?
-		return true if @grid[x][y].hit!
+		@grid[x][y].hit!
 	end
 
 end

@@ -3,8 +3,8 @@ require 'placement_grid'
 describe PlacementGrid do
 
 	let(:placement_grid) { PlacementGrid.new(2,2) }
-	let(:ship)			 { double :ship }
-	let(:ship_element)	{ double :ship_element }
+	let(:ship)			 { double :ship           }
+	let(:ship_element)	 { double :ship_element   }
 
 	it 'is initialized with dimensions' do
 		expect(placement_grid).to eq placement_grid
@@ -39,10 +39,10 @@ describe PlacementGrid do
 	end
 
 	it 'tells a ship element at a coordinate that it has been hit' do
-		placement_grid = PlacementGrid.new(9,9)
-		expect(ship_element).to receive(:hit!).and_return(ship_element)
-		placement_grid.grid[3][3] = ship_element
-		expect(placement_grid.hit_at?(3,3)).to be true
+		allow(ship).to receive(:elements).and_return([ship_element])
+		placement_grid.place(ship,1,1)
+		expect(ship_element).to receive(:hit!).and_return(true)
+		placement_grid.hit_at?(1,1)
 	end
 
 	it 'returns false when there is no ship element at the coordinate being fired at' do
