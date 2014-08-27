@@ -15,6 +15,4 @@ class Game
 		@current_player = players.push(players.shift)[0]
 	end
 
-
-
 end

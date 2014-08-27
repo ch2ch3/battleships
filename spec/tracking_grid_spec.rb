@@ -41,7 +41,7 @@ describe TrackingGrid do
 			to receive(:hit_at?).
 			with(1,1).and_return(true)
 		tracking_grid.fire_at(1,1)
-	end	
+	end
 
 	it "sets the coordinate to 'miss' when a shot misses" do
 		allow(placement_grid).

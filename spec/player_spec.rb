@@ -29,7 +29,6 @@ describe Player do
 	it "can remove ships if they've been sunk" do
 		expect(player_1.ships[2]).to receive(:sunk?).and_return(true)
 		player_1.update_ships
-		puts player_1.ships.each { |ship| puts ship.type }
 		expect(player_1.ships.count).to eq (4)
 	end
 

@@ -10,16 +10,16 @@ class Ship
 		patrol_boat: 2
 	}
 
-	attr_reader :elements, :type
+	attr_reader :elements, :type, :x_coordinate, :y_coordinate
+	attr_accessor :orientation
 
 	def initialize(type)
 		@elements = []
 		@type = type
+		@x_coordinate = nil
+		@y_coordinate = nil
+		@orientation = nil
 		build
-	end
-
-	def give(element)
-		@elements << element
 	end
 
 	def build
@@ -35,4 +35,10 @@ class Ship
 	def sunk?
 		elements.all?(&:hit)
 	end
+
+	def placement_coordinates(coordinates)
+		@x_coordinate = coordinates.first
+		@y_coordinate = coordinates.last
+	end
+
 end

@@ -19,6 +19,4 @@ describe Game do
 		expect(game.current_player).to eq(game.player_1)
 	end
 
-
-
 end

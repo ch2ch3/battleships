@@ -22,15 +22,6 @@ describe Ship do
 			expect(submarine.elements.count).to eq(3)
 			expect(patrol_boat.elements.count).to eq(2)
 		end
-
-		it 'initializes with the correct number of ship elements for its type' do
-			expect(carrier.elements.count).to eq(5)
-			expect(battleship.elements.count).to eq(4)
-			expect(destroyer.elements.count).to eq(3)
-			expect(submarine.elements.count).to eq(3)
-			expect(patrol_boat.elements.count).to eq(2)
-		end
-
 	end
 
 	context 'Type' do
@@ -56,6 +47,17 @@ describe Ship do
 
 	it 'can tell you how long it is' do
 		expect(patrol_boat.length).to be 2
+	end
+
+	it 'can have its starting coordinates set' do
+		patrol_boat.placement_coordinates([1,2])
+		expect(patrol_boat.x_coordinate).to eq 1
+		expect(patrol_boat.y_coordinate).to eq 2
+	end
+
+	it 'can have its orientation set' do
+		patrol_boat.orientation = :horizontal
+		expect(patrol_boat.orientation).to be :horizontal
 	end
 
 end
