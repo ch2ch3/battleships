@@ -19,4 +19,8 @@ class Player
 		ships.empty?
 	end
 
+	def update_ships
+		ships.reject! { |ship| ship.sunk? }
+	end
+
 end
