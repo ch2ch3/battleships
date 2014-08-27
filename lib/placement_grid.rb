@@ -1,4 +1,4 @@
-require 'placement_logic'
+require 'placement_rules'
 
 class PlacementGrid
 
@@ -9,7 +9,7 @@ class PlacementGrid
 	end
 
 	def place(ship)
-		PlacementLogic.fit?(ship, self)
+		PlacementRules.obey?(ship, self)
 		x, y = ship.x_coordinate, ship.y_coordinate
 		ship.elements.each do |element|
 			@grid[x][y] = element
