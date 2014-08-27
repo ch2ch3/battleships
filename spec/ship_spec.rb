@@ -43,28 +43,6 @@ describe Ship do
 		it 'knows what kind of ship it is' do
 			expect(battleship.type).to eq(:battleship)
 		end
-
-	end
-
-	context 'Type' do
-
-		it 'knows what kind of ship it is' do
-			expect(battleship.type).to eq(:battleship)
-		end
-	end
-
-	context 'Sunk' do
-		
-		it 'knows if it\'s sunk' do
-			patrol_boat.elements.each { |element| element.hit! }
-			expect(patrol_boat.sunk?).to be true
-		end
-
-		it 'knows that it\'s not sunk' do
-			patrol_boat.elements[1].hit!
-			expect(patrol_boat.sunk?).to be false
-		end
-
 	end
 
 	context 'Sunk' do
