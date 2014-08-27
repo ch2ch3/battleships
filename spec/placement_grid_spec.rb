@@ -1,6 +1,26 @@
 require 'placement_grid'
 
 describe PlacementGrid do
+	let(:ship_two) {
+		double :ship_two,
+		length: 2,
+		elements: [
+				:ship_element_two_one,
+				:ship_element__two_two,
+			]
+		}
+
+	let(:ship_five) {
+		double :ship_five,
+		length: 5,
+		elements: [
+			:ship_element_one,
+			:ship_element_two,
+			:ship_element_three,
+			:ship_element_four,
+			:ship_element_five
+		]
+	}
 
   let ( :placement_grid            )  { PlacementGrid.new(9,9) }
   let ( :placement_grid_two_by_two )  { PlacementGrid.new(2,2) }
@@ -31,16 +51,7 @@ describe PlacementGrid do
 	end
 
 	it 'cannot place a ship outside the boundaries of the placement grid' do
-		allow(ship).to receive(:length).and_return(3)
-		allow(ship).
-			to receive(:elements).
-			and_return([
-				:ship_element_one,
-				:ship_element_two,
-				:ship_element_three
-			])
-
-		expect{ placement_grid_two_by_two.place(ship,1,1) }
+		expect{ placement_grid_two_by_two.place(ship_two,1,1) }
 			.to raise_error(ArgumentError)
 	end
 
@@ -55,18 +66,7 @@ describe PlacementGrid do
 	end
 
 	it 'cannot place a 1x5 ship vertically in square 0,7 of a 9x9 grid' do
-		allow(ship).to receive(:length).and_return(5)
-		allow(ship).
-			to receive(:elements).
-			and_return([
-				:ship_element_one,
-				:ship_element_two,
-				:ship_element_three,
-				:ship_element_four,
-				:ship_element_five
-			])
-
-		expect{ placement_grid.place(ship, 0, 7, :vertical)}
+		expect{ placement_grid.place(ship_five, 0, 7, :vertical)}
 			.to raise_error(ArgumentError)
 	end
 
@@ -95,53 +95,18 @@ describe PlacementGrid do
 	end
 
 	it 'cannot place a ship over another ship element horizontally' do
-		ship_five = double :ship_five
-		ship_two = double :ship_two
-		allow(ship_five).to receive(:length).and_return(5)
-		allow(ship_five).
-			to receive(:elements).
-			and_return([
-				:ship_element_one,
-				:ship_element_two,
-				:ship_element_three,
-				:ship_element_four,
-				:ship_element_five
-			])
-		allow(ship_two).to receive(:length).and_return(2)
-		allow(ship_two).
-			to receive(:elements).
-			and_return([
-				:ship_element_two_one,
-				:ship_element__two_two,
-			])
 			placement_grid.place(ship_five, 2, 0, :vertical)
 			expect{ placement_grid.place(ship_two,1,1) }.to raise_error
 	end
 
 	it 'cannot place a ship over another ship element vertically' do
-		ship_five = double :ship_five
-		ship_two = double :ship_two
-		allow(ship_five).to receive(:length).and_return(5)
-		allow(ship_five).
-			to receive(:elements).
-			and_return([
-				:ship_element_one,
-				:ship_element_two,
-				:ship_element_three,
-				:ship_element_four,
-				:ship_element_five
-			])
-		allow(ship_two).to receive(:length).and_return(2)
-		allow(ship_two).
-			to receive(:elements).
-			and_return([
-				:ship_element_two_one,
-				:ship_element__two_two,
-			])
 			placement_grid.place(ship_five, 0, 2, :horizontal)
-			 #placement_grid.place(ship_two,1,1, :vertical)
-			 #placement_grid.grid.each {|row| p row}
 			expect{ placement_grid.place(ship_two,1,1, :vertical) }.to raise_error
 	end
+
+	it 'will allow ships to be placed touching' do
+		placement_grid.place(ship_five, 0, 2, :horizontal)
+		expect( placement_grid.place(ship_two, 5, 1, :vertical )).to be placement_grid
+end
 
 end
