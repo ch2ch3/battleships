@@ -13,6 +13,7 @@ describe PlacementGrid do
 	end
 
 	it 'can place a ship in the specified coordinates' do
+		allow(ship).to receive(:length).and_return(1)
 		allow(ship).
 			to receive(:elements).
 			and_return([:ship_element_one])
@@ -20,6 +21,7 @@ describe PlacementGrid do
 	end
 
 	it 'cannot place a ship in a cell that is already occupied' do
+		allow(ship).to receive(:length).and_return(1)
 		allow(ship).
 			to receive(:elements).
 			and_return([:ship_element_one])
@@ -29,6 +31,7 @@ describe PlacementGrid do
 	end
 
 	it 'cannot place a ship outside the boundaries of the placement grid' do
+		allow(ship).to receive(:length).and_return(3)
 		allow(ship).
 			to receive(:elements).
 			and_return([
@@ -42,6 +45,7 @@ describe PlacementGrid do
 	end
 
 	it 'cannot place a 1x2 ship horizontally in the top-right corner of a 9x9 grid' do
+		allow(ship).to receive(:length).and_return(2)
 		allow(ship).
 			to receive(:elements).
 			and_return([:ship_element_one, :ship_element_two])
@@ -51,6 +55,7 @@ describe PlacementGrid do
 	end
 
 	it 'cannot place a 1x5 ship vertically in square 0,7 of a 9x9 grid' do
+		allow(ship).to receive(:length).and_return(5)
 		allow(ship).
 			to receive(:elements).
 			and_return([
@@ -66,6 +71,7 @@ describe PlacementGrid do
 	end
 
 	it 'tells a ship element at a coordinate that it has been hit' do
+		allow(ship).to receive(:length).and_return(1)
 		allow(ship).to receive(:elements).and_return([ship_element])
 		placement_grid.place(ship,1,1)
 		expect(ship_element).to receive(:hit!).and_return(true)
@@ -77,6 +83,7 @@ describe PlacementGrid do
 	end
 
 	it 'places ship elements in the expected grid location' do
+		allow(ship).to receive(:length).and_return(2)
 		allow(ship).
 			to receive(:elements).
 			and_return([:ship_element_one, :ship_element_two])
@@ -85,6 +92,30 @@ describe PlacementGrid do
 		expect(placement_grid.cell(1,1)).to be nil
 		expect(placement_grid.cell(2,2)).to be :ship_element_one
 		expect(placement_grid.cell(3,2)).to be :ship_element_two
+	end
+
+	it 'cannot place a ship over another ship element' do
+		ship_five = double :ship_five
+		ship_two = double :ship_two
+		allow(ship_five).to receive(:length).and_return(5)
+		allow(ship_five).
+			to receive(:elements).
+			and_return([
+				:ship_element_one,
+				:ship_element_two,
+				:ship_element_three,
+				:ship_element_four,
+				:ship_element_five
+			])
+		allow(ship_two).to receive(:length).and_return(2)
+		allow(ship_two).
+			to receive(:elements).
+			and_return([
+				:ship_element_two_one,
+				:ship_element__two_two,
+			])
+			placement_grid.place(ship_five, 2, 0, :vertical)
+			expect{ placement_grid.place(ship_two,1,1) }.to raise_error
 	end
 
 end
