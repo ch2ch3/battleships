@@ -18,8 +18,11 @@ class Game
   #remember to link the opposing player's grid instead of the player's own
   #
   def create_grids
-    players.each {|player| player.grids << PlacementGrid.new(10, 10) }
-    players.each {|player| player.grids << TrackingGrid.new(10, 10, player.grids[0]) }
+    players.each do
+      |player| player.tracking_grid=(TrackingGrid.new(10, 10, PlacementGrid.new(10,10)))
+    end
+  @player_2.placement_grid = @player_1.tracking_grid.placement_grid
+  @player_1.placement_grid = @player_2.tracking_grid.placement_grid
   end
 
 end

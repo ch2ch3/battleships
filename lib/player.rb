@@ -1,12 +1,11 @@
 class Player
 
 	attr_reader :ships
-  attr_accessor :grids
+  attr_accessor :placement_grid, :tracking_grid
 
 	def initialize
 		build_ships
 		@ships = [@carrier, @battleship, @submarine, @destroyer, @patrol_boat]
-    @grids = []
 	end
 
 	def build_ships
