@@ -7,8 +7,7 @@ class Ship
 		battleship: 4,
 		submarine: 3,
 		destroyer: 3,
-		patrol_boat: 2,
-		ship: 1
+		patrol_boat: 2
 	}
 
 	attr_reader :elements, :type
