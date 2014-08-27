@@ -1,7 +1,5 @@
 class PlacementGrid
 
-	attr_accessor :grid
-
 	def initialize(x,y)
 		@grid = Array.new(x) { Array.new(y) }
 	end
@@ -31,6 +29,10 @@ class PlacementGrid
 	def hit_at?(x,y)
 		return false if @grid[x][y].nil?
 		@grid[x][y].hit!
+	end
+
+	def cell(x, y)
+		@grid[x][y]
 	end
 
 end
