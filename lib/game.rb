@@ -15,4 +15,11 @@ class Game
 		@current_player = players.push(players.shift)[0]
 	end
 
+  #remember to link the opposing player's grid instead of the player's own
+  #
+  def create_grids
+    players.each {|player| player.grids << PlacementGrid.new(10, 10) }
+    players.each {|player| player.grids << TrackingGrid.new(10, 10, player.grids[0]) }
+  end
+
 end
