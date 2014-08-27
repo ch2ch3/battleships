@@ -1,5 +1,4 @@
-class PlacementError < StandardError
-end
+require 'placement_logic'
 
 class PlacementGrid
 
@@ -10,7 +9,7 @@ class PlacementGrid
 	end
 
 	def place(ship)
-		does_ship_fit?(ship)
+		PlacementLogic.fit?(ship, self)
 		x, y = ship.x_coordinate, ship.y_coordinate
 		ship.elements.each do |element|
 			@grid[x][y] = element
@@ -26,27 +25,6 @@ class PlacementGrid
 
 	def cell(x, y)
 		@grid[x][y]
-	end
-
-	def does_ship_fit?(ship)
-		x, y = ship.x_coordinate, ship.y_coordinate
-		if ship.orientation == :horizontal
-			raise PlacementError if ship.length > (@grid.length - x)
-			raise PlacementError unless row_empty?(ship, x, y)
-		elsif ship.orientation == :vertical
-			raise PlacementError if ship.length > (@grid[x].length - y)
-			raise PlacementError unless column_empty?(ship,x,y)
-		end
-	end
-
-	def row_empty?(ship, x, y)
-			(x..(x + ship.length)).
-				all? {|x_coord| cell(x_coord, y) == nil}
-	end
-
-	def column_empty?(ship, x, y)
-			(y..(y + ship.length)).
-				all? {|y_coord| cell(x, y_coord) == nil}
 	end
 
 end
