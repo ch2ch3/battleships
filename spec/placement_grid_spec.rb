@@ -22,10 +22,16 @@ describe PlacementGrid do
 		]
 	}
 
+  let (:ship) {
+		double :ship,
+		length: 1,
+		elements: :ship_element_one
+	}
+
   let ( :placement_grid            )  { PlacementGrid.new(9,9) }
   let ( :placement_grid_two_by_two )  { PlacementGrid.new(2,2) }
-  let ( :ship                      )  { double :ship           }
   let ( :ship_element              )  { double :ship_element   }
+
 
 	it 'is initialized with dimensions' do
 		expect(placement_grid).
