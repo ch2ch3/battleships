@@ -10,10 +10,6 @@ class Carrier < Ship
 		build(ship_element)
 	end
 
-	def build(ship_element)
-		SIZE.times { elements << ship_element.new }
-	end
-
 end
 
 
@@ -24,10 +20,6 @@ class BattleShip  < Ship
 	def initialize(ship_element)
 		super
 		build(ship_element)
-	end
-
-	def build(ship_element)
-		SIZE.times { elements << ship_element.new }
 	end
 
 end
@@ -42,10 +34,6 @@ class Destroyer < Ship
 		build(ship_element)
 	end
 
-	def build(ship_element)
-		SIZE.times { elements << ship_element.new }
-	end
-
 end
 
 class Submarine < Ship
@@ -57,10 +45,6 @@ class Submarine < Ship
 		build(ship_element)
 	end
 
-	def build(ship_element)
-		SIZE.times { elements << ship_element.new }
-	end
-
 end
 
 class PatrolBoat < Ship
@@ -70,10 +54,6 @@ class PatrolBoat < Ship
 	def initialize(ship_element)
 		super
 		build(ship_element)
-	end
-
-	def build(ship_element)
-		SIZE.times { elements << ship_element.new }
 	end
 
 end

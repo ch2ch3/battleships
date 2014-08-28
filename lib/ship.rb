@@ -23,8 +23,8 @@ class Ship
 		@y_coordinate = coordinates.last
 	end
 
-	#def build(size, ship_part)
-    #size.times { elements << ship_part.new }
-	#end
+  def build(ship_element)
+    self.class::SIZE.times { elements << ship_element.new }
+  end
 
 end
