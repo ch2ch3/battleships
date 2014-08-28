@@ -1,4 +1,4 @@
-require 'placement_rules'
+require_relative 'placement_rules'
 
 class ShipBoard
 
