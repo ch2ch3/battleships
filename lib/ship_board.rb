@@ -1,6 +1,6 @@
 require 'placement_rules'
 
-class PlacementGrid
+class ShipBoard
 
 	attr_reader :grid
 

@@ -1,6 +1,6 @@
-require 'placement_grid'
+require 'ship_board'
 
-describe PlacementGrid do
+describe ShipBoard do
 
 	let(:ship_two) {
 		double :ship_two,
@@ -39,14 +39,14 @@ describe PlacementGrid do
 
 	}
 
-  let ( :placement_grid            )  { PlacementGrid.new(9,9) }
-  let ( :placement_grid_two_by_two )  { PlacementGrid.new(2,2) }
+  let ( :ship_board            )  { ShipBoard.new(9,9) }
+  let ( :ship_board_two_by_two )  { ShipBoard.new(2,2) }
   let ( :ship_element              )  { double :ship_element   }
 
 
 	it 'is initialized with dimensions' do
-		expect(placement_grid).
-			to eq placement_grid
+		expect(ship_board).
+			to eq ship_board
 	end
 
 	it 'can place a ship in the specified coordinates' do
@@ -54,7 +54,7 @@ describe PlacementGrid do
 		allow(ship).
 			to receive(:elements).
 			and_return([:ship_element_one])
-		expect(placement_grid.place(ship)).to eq placement_grid
+		expect(ship_board.place(ship)).to eq ship_board
 	end
 
 	it 'cannot place a ship in a cell that is already occupied' do
@@ -63,12 +63,12 @@ describe PlacementGrid do
 			to receive(:elements).
 			and_return([:ship_element_one])
 
-		placement_grid.place(ship)
-		expect{ placement_grid.place(ship) }.to raise_error
+		ship_board.place(ship)
+		expect{ ship_board.place(ship) }.to raise_error
 	end
 
 	it 'cannot place a ship outside the boundaries of the placement grid' do
-		expect{ placement_grid_two_by_two.place(ship_two) }
+		expect{ ship_board_two_by_two.place(ship_two) }
 			.to raise_error(PlacementError)
 	end
 
@@ -81,7 +81,7 @@ describe PlacementGrid do
 		allow(ship).to receive(:y_coordinate).and_return(0)
 		allow(ship).to receive(:orientation).and_return(:horizontal)
 
-		expect{ placement_grid.place(ship)}
+		expect{ ship_board.place(ship)}
 			.to raise_error(PlacementError)
 	end
 
@@ -89,20 +89,20 @@ describe PlacementGrid do
 		allow(ship_five).to receive(:x_coordinate).and_return(0)
 		allow(ship_five).to receive(:y_coordinate).and_return(7)
 		allow(ship_five).to receive(:orientation).and_return(:vertical)
-		expect{ placement_grid.place(ship_five)}
+		expect{ ship_board.place(ship_five)}
 			.to raise_error(PlacementError)
 	end
 
 	it 'tells a ship element at a coordinate that it has been hit' do
 		allow(ship).to receive(:length).and_return(1)
 		allow(ship).to receive(:elements).and_return([ship_element])
-		placement_grid.place(ship)
+		ship_board.place(ship)
 		expect(ship_element).to receive(:hit!).and_return(true)
-		placement_grid.hit_at?(1,1)
+		ship_board.hit_at?(1,1)
 	end
 
 	it 'returns false when there is no ship element at the coordinate being fired at' do
-		expect(placement_grid.hit_at?(3,3)).to be false
+		expect(ship_board.hit_at?(3,3)).to be false
 	end
 
 	it 'places ship elements in the expected grid location' do
@@ -110,32 +110,32 @@ describe PlacementGrid do
 		allow(ship).
 			to receive(:elements).
 			and_return([:ship_element_one, :ship_element_two])
-		placement_grid.place(ship)
-		expect(placement_grid.cell(0,1)).to be nil
-		expect(placement_grid.cell(1,1)).to be :ship_element_one
-		expect(placement_grid.cell(2,1)).to be :ship_element_two
+		ship_board.place(ship)
+		expect(ship_board.cell(0,1)).to be nil
+		expect(ship_board.cell(1,1)).to be :ship_element_one
+		expect(ship_board.cell(2,1)).to be :ship_element_two
 	end
 
 	it 'cannot place a ship over another ship element horizontally' do
 		allow(ship_five).to receive(:x_coordinate).and_return(2)
 		allow(ship_five).to receive(:y_coordinate).and_return(0)
 		allow(ship_five).to receive(:orientation).and_return(:vertical)
-		placement_grid.place(ship_five)
-		expect{ placement_grid.place(ship_two) }.to raise_error
+		ship_board.place(ship_five)
+		expect{ ship_board.place(ship_two) }.to raise_error
 	end
 
 	it 'cannot place a ship over another ship element vertically' do
-		placement_grid.place(ship_five)
+		ship_board.place(ship_five)
 		allow(ship_two).to receive(:orientation).and_return(:vertical)
-		expect{ placement_grid.place(ship_two) }.to raise_error
+		expect{ ship_board.place(ship_two) }.to raise_error
 	end
 
 	it 'will allow ships to be placed touching' do
-		placement_grid.place(ship_five)
+		ship_board.place(ship_five)
 		allow(ship_two).to receive(:x_coordinate).and_return(5)
 		allow(ship_two).to receive(:y_coordinate).and_return(1)
 		allow(ship_two).to receive(:orientation).and_return(:vertical)
-		expect( placement_grid.place(ship_two)).to be placement_grid
+		expect( ship_board.place(ship_two)).to be ship_board
 	end
 
 end

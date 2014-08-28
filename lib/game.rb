@@ -1,7 +1,7 @@
 require 'player'
 require 'ship'
-require 'tracking_grid'
-require 'placement_grid'
+require 'firing_board'
+require 'ship_board'
 
 class Game
 
@@ -22,10 +22,8 @@ class Game
 
   def create_grids(x: DEFAULT_GRID_DIMENSION, y: DEFAULT_GRID_DIMENSION)
     players.each do |player|
-			player.firing_board=(TrackingGrid.new(x, y, PlacementGrid.new(x, y)))
+			player.firing_board=(FiringBoard.new(x, y, ShipBoard.new(x, y)))
     end
-	# @player_1.ship_board = @player_2.tracking_grid.linked_board_with_ships
-	# @player_2.ship_board = @player_1.tracking_grid.linked_board_with_ships
 
 	@player_1.ship_board = @player_2.firing_board.linked_ship_board
 	@player_2.ship_board = @player_1.firing_board.linked_ship_board
