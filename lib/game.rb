@@ -9,6 +9,7 @@ class Game
 	attr_reader :player_1, :player_2, :players, :current_player
 
 	DEFAULT_BOARD_DIMENSION = 10
+  SHIPS = [Carrier, BattleShip, Destroyer, Submarine, PatrolBoat]
 
 	def initialize
 		@player_1 = Player.new
@@ -32,11 +33,7 @@ class Game
 
 	def build_fleets
 		players.each do |player|
-			player.fleet << Carrier.new(ShipElement)
-			player.fleet << BattleShip.new(ShipElement)
-			player.fleet << Destroyer.new(ShipElement)
-			player.fleet << Submarine.new(ShipElement)
-			player.fleet << PatrolBoat.new(ShipElement)
+			SHIPS.each { |ship| player.fleet << ship.new(ShipElement) }
 		end
 	end
 
