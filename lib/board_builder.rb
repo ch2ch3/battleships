@@ -1,9 +1,9 @@
 require 'terminal-table'
 require 'colorize'
 
-class GridBuilder
+class BoardBuilder
 
-	attr_accessor :grid
+	attr_accessor :board
 
 	def initialize(input)
 		input.map! do |row|
@@ -17,11 +17,11 @@ class GridBuilder
 				end
 			end
 		end
-		@grid = Terminal::Table.new :rows => input
+		@board = Terminal::Table.new :rows => input
 	end
 
 	def to_s
-		@grid.to_s
+		board.to_s
 	end
 
 end
