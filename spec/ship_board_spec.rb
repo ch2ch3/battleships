@@ -67,12 +67,12 @@ describe ShipBoard do
 		expect{ ship_board.place(ship) }.to raise_error
 	end
 
-	it 'cannot place a ship outside the boundaries of the placement grid' do
+	it 'cannot place a ship outside the boundaries of the ship board' do
 		expect{ ship_board_two_by_two.place(ship_two) }
 			.to raise_error(PlacementError)
 	end
 
-	it 'cannot place a 1x2 ship horizontally in the top-right corner of a 9x9 grid' do
+	it 'cannot place a 1x2 ship horizontally in the top-right corner of a 9x9 board' do
 		allow(ship).to receive(:length).and_return(2)
 		allow(ship).
 			to receive(:elements).
@@ -85,7 +85,7 @@ describe ShipBoard do
 			.to raise_error(PlacementError)
 	end
 
-	it 'cannot place a 1x5 ship vertically in square 0,7 of a 9x9 grid' do
+	it 'cannot place a 1x5 ship vertically in square 0,7 of a 9x9 board' do
 		allow(ship_five).to receive(:x_coordinate).and_return(0)
 		allow(ship_five).to receive(:y_coordinate).and_return(7)
 		allow(ship_five).to receive(:orientation).and_return(:vertical)
@@ -105,7 +105,7 @@ describe ShipBoard do
 		expect(ship_board.hit_at?(3,3)).to be false
 	end
 
-	it 'places ship elements in the expected grid location' do
+	it 'places ship elements in the expected board location' do
 		allow(ship).to receive(:length).and_return(2)
 		allow(ship).
 			to receive(:elements).
