@@ -34,8 +34,6 @@ class BoardBuilder
 				end
 			end
 		end
-		p array
-
 	end
 
 	def ship_board_array_to_image(array)
@@ -43,7 +41,13 @@ class BoardBuilder
 		array.map! do |row|
 			row.map! do |cell|
 				if cell.class == ShipElement
-					"∆".colorize(:light_black).colorize(:background => :blue)
+					if cell.hit
+						"∆".yellow.on_red.blink
+					else
+						"∆".colorize(:light_black).colorize(:background => :blue)
+					end
+				else
+					"~".colorize(:blue)
 				end
 			end
 		end

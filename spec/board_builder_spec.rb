@@ -43,6 +43,13 @@ describe BoardBuilder do
 			table = BoardBuilder.new(ship_board)
 			expect (puts table)
 		end
+
+		it "can print out damaged ships" do
+			ship_element.hit!
+			ship_board.grid.map! {|row| row.map! {|cell| ship_element}}
+			table = BoardBuilder.new(ship_board)
+			expect (puts table)
+		end
 	end
 
 
