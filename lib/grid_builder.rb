@@ -1,4 +1,5 @@
 require 'terminal-table'
+require 'colorize'
 
 class GridBuilder
 
@@ -8,11 +9,11 @@ class GridBuilder
 		input.map! do |row|
 			row.map! do |cell|
 				if cell == :hit
-					"\033[31mX\033[0m"
+					"X".colorize(:red)
 				elsif cell == :miss
 					"O"
 				else
-					"\033[34m~\033[0m"
+					"~".colorize(:blue)
 				end
 			end
 		end
