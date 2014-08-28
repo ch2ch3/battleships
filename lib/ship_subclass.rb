@@ -1,53 +1,79 @@
 require 'ship'
 
-class Carrier < Ship
 
-	SIZE = 5
+ class Carrier < Ship
 
-	def initialize(ship_element)
-		super
-		super build(SIZE, ship_element)
-	end
+  SIZE = 5
+
+  def initialize(ship_element)
+    super
+    build(ship_element)
+  end
+
+  def build(ship_element)
+    SIZE.times { elements << ship_element.new }
+  end
+
+ end
+
+
+ class BattleShip  < Ship
+
+  SIZE = 4
+
+  def initialize(ship_element)
+    super
+    build(ship_element)
+  end
+
+  def build(ship_element)
+    SIZE.times { elements << ship_element.new }
+  end
+
+ end
+
+
+ class Destroyer < Ship
+
+  SIZE = 3
+
+  def initialize(ship_element)
+    super
+    build(ship_element)
+  end
+
+  def build(ship_element)
+    SIZE.times { elements << ship_element.new }
+  end
 
 end
 
-class BattleShip  < Ship
+ class Submarine < Ship
 
-	SIZE = 4
+  SIZE = 3
 
-	def initialize(ship_element)
-		super
-		super build(SIZE, ship_element)
-	end
+  def initialize(ship_element)
+    super
+    build(ship_element)
+  end
 
-end
+  def build(ship_element)
+    SIZE.times { elements << ship_element.new }
+  end
 
-class Destroyer < Ship
+ end
 
-	SIZE = 3
+ class PatrolBoat < Ship
 
-	def initialize(ship_element)
-		super
-		super build(SIZE, ship_element)
-	end
-end
+  SIZE = 2
 
-class Submarine < Ship
+  def initialize(ship_element)
+    super
+    build(ship_element)
+  end
 
-	SIZE = 3
+  def build(ship_element)
+    SIZE.times { elements << ship_element.new }
+  end
 
-	def initialize(ship_element)
-		super
-		super build(SIZE, ship_element)
-	end
-end
-
-class PatrolBoat < Ship
-
-	SIZE = 2
-
-	def initialize(ship_element)
-		super
-		super build(SIZE, ship_element)
-	end
 end
