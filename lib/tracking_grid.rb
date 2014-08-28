@@ -1,6 +1,7 @@
 class TrackingGrid
 
 	attr_reader :dimensions
+	attr_accessor :grid
 
 	def initialize(x,y, placement_grid)
 		@grid = Array.new(x) { Array.new(y) }

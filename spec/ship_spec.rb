@@ -2,14 +2,16 @@ require 'ship'
 
 shared_examples "a ship" do
 
-	let(:ship_element) 	{ ShipElement }
-	let(:ship)			{ described_class.new(ship_element) }
+	let(:ship_element) { double :ship_element, hit: false }
+	let(:hit_ship_element) { double :ship_element, hit: true }
+	let(:ship_element_class) 	{ double :ShipElement, new: ship_element}
+	let(:ship)			{ described_class.new(ship_element_class) }
 
 
 	context 'Initialization' do
 
 		it 'can hold ship elements' do
-			expect(ship.elements[0].class).to eq(ShipElement)
+			expect(ship.elements[0]).to eq(ship_element)
 		end
 
 	end
@@ -17,12 +19,12 @@ shared_examples "a ship" do
 	context 'Sunk' do
 
 		it 'knows if it\'s sunk' do
-			ship.elements.each { |element| element.hit! }
+			ship.elements.map! { |element| hit_ship_element }
 			expect(ship.sunk?).to be true
 		end
 
 		it 'knows that it\'s not sunk' do
-			ship.elements[1].hit!
+			ship.elements[1] = hit_ship_element
 			expect(ship.sunk?).to be false
 		end
 

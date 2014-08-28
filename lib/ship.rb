@@ -1,5 +1,3 @@
-require './lib/ship_element'
-
 class Ship
 
 	attr_reader :elements, :type, :x_coordinate, :y_coordinate
@@ -23,6 +21,10 @@ class Ship
 	def placement_coordinates(coordinates)
 		@x_coordinate = coordinates.first
 		@y_coordinate = coordinates.last
+	end
+
+	def build(size, ship_part)
+    size.times { elements << ship_part.new }
 	end
 
 end
