@@ -1,13 +1,14 @@
 require 'player'
-require 'ship'
 require 'firing_board'
 require 'ship_board'
+require 'ship_subclass'
+require 'ship_element'
 
 class Game
 
 	attr_reader :player_1, :player_2, :players, :current_player
 
-	DEFAULT_GRID_DIMENSION = 10
+	DEFAULT_BOARD_DIMENSION = 10
 
 	def initialize
 		@player_1 = Player.new
@@ -20,13 +21,23 @@ class Game
 		@current_player = players.reverse![0]
 	end
 
-  def create_grids(x: DEFAULT_GRID_DIMENSION, y: DEFAULT_GRID_DIMENSION)
-    players.each do |player|
+	def create_boards(x: DEFAULT_BOARD_DIMENSION, y: DEFAULT_BOARD_DIMENSION)
+	    players.each do |player|
 			player.firing_board=(FiringBoard.new(x, y, ShipBoard.new(x, y)))
-    end
+		end
+	
+		@player_1.ship_board = @player_2.firing_board.linked_ship_board
+		@player_2.ship_board = @player_1.firing_board.linked_ship_board
+	end
 
-	@player_1.ship_board = @player_2.firing_board.linked_ship_board
-	@player_2.ship_board = @player_1.firing_board.linked_ship_board
-  end
+	def build_fleets
+		players.each do |player|
+			player.fleet << Carrier.new(ShipElement)
+			player.fleet << BattleShip.new(ShipElement)
+			player.fleet << Destroyer.new(ShipElement)
+			player.fleet << Submarine.new(ShipElement)
+			player.fleet << PatrolBoat.new(ShipElement)
+		end
+	end
 
 end
