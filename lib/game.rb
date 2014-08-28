@@ -1,8 +1,8 @@
-require 'player'
-require 'firing_board'
-require 'ship_board'
-require 'ship_subclass'
-require 'ship_element'
+require_relative 'player'
+require_relative 'firing_board'
+require_relative 'ship_board'
+require_relative 'ship_subclass'
+require_relative 'ship_element'
 
 class Game
 
