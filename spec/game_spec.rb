@@ -39,7 +39,7 @@ describe Game do
 		expect(game.player_1.fleet[0].class).to eq(Carrier)
 	end
 
-	it ''
+	
 
 end
 
