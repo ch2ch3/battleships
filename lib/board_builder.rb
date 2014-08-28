@@ -5,6 +5,8 @@ class BoardBuilder
 
 	attr_accessor :board
 
+	HEADINGS = [" "] + ("A".."J").to_a
+
 	def initialize(input)
 		table = []
 		if input.class == FiringBoard
@@ -14,7 +16,7 @@ class BoardBuilder
 			board_image = input.grid
 			table = ship_board_array_to_image(board_image)
 		end
-		@image = Terminal::Table.new :rows => table
+		@image = Terminal::Table.new :headings => HEADINGS, :rows => table
 	end
 
 	def to_s
@@ -33,7 +35,9 @@ class BoardBuilder
 					"~".colorize(:blue)
 				end
 			end
+			row.unshift(array.index(row)+1)
 		end
+
 	end
 
 	def ship_board_array_to_image(array)
@@ -50,6 +54,7 @@ class BoardBuilder
 					"~".colorize(:blue)
 				end
 			end
+			row.unshift(array.index(row)+1)
 		end
 	end
 
