@@ -1,79 +1,79 @@
 require 'ship'
 
 
- class Carrier < Ship
+class Carrier < Ship
 
-  SIZE = 5
+	SIZE = 5
 
-  def initialize(ship_element)
-    super
-    build(ship_element)
-  end
+	def initialize(ship_element)
+		super
+		build(ship_element)
+	end
 
-  def build(ship_element)
-    SIZE.times { elements << ship_element.new }
-  end
-
- end
-
-
- class BattleShip  < Ship
-
-  SIZE = 4
-
-  def initialize(ship_element)
-    super
-    build(ship_element)
-  end
-
-  def build(ship_element)
-    SIZE.times { elements << ship_element.new }
-  end
-
- end
-
-
- class Destroyer < Ship
-
-  SIZE = 3
-
-  def initialize(ship_element)
-    super
-    build(ship_element)
-  end
-
-  def build(ship_element)
-    SIZE.times { elements << ship_element.new }
-  end
+	def build(ship_element)
+		SIZE.times { elements << ship_element.new }
+	end
 
 end
 
- class Submarine < Ship
 
-  SIZE = 3
+class BattleShip  < Ship
 
-  def initialize(ship_element)
-    super
-    build(ship_element)
-  end
+	SIZE = 4
 
-  def build(ship_element)
-    SIZE.times { elements << ship_element.new }
-  end
+	def initialize(ship_element)
+		super
+		build(ship_element)
+	end
 
- end
+	def build(ship_element)
+		SIZE.times { elements << ship_element.new }
+	end
 
- class PatrolBoat < Ship
+end
 
-  SIZE = 2
 
-  def initialize(ship_element)
-    super
-    build(ship_element)
-  end
+class Destroyer < Ship
 
-  def build(ship_element)
-    SIZE.times { elements << ship_element.new }
-  end
+	SIZE = 3
+
+	def initialize(ship_element)
+		super
+		build(ship_element)
+	end
+
+	def build(ship_element)
+		SIZE.times { elements << ship_element.new }
+	end
+
+end
+
+class Submarine < Ship
+
+	SIZE = 3
+
+	def initialize(ship_element)
+		super
+		build(ship_element)
+	end
+
+	def build(ship_element)
+		SIZE.times { elements << ship_element.new }
+	end
+
+end
+
+class PatrolBoat < Ship
+
+	SIZE = 2
+
+	def initialize(ship_element)
+		super
+		build(ship_element)
+	end
+
+	def build(ship_element)
+		SIZE.times { elements << ship_element.new }
+	end
 
 end
