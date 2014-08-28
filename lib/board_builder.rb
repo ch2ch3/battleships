@@ -6,13 +6,15 @@ class BoardBuilder
 	attr_accessor :board
 
 	def initialize(input)
+		table = []
 		if input.class == FiringBoard
 			board_image = input.grid
-			@table = firing_board_array_to_image(board_image)
-		elsif input.class ShipBoard
+			table = firing_board_array_to_image(board_image)
+		elsif input.class == ShipBoard
 			board_image = input.grid
-			@table = ship_board_array_to_image(board_imageimage)
+			table = ship_board_array_to_image(board_image)
 		end
+		@image = Terminal::Table.new :rows => table
 	end
 
 	def to_s
@@ -32,7 +34,19 @@ class BoardBuilder
 				end
 			end
 		end
+		p array
 
+	end
+
+	def ship_board_array_to_image(array)
+
+		array.map! do |row|
+			row.map! do |cell|
+				if cell.class == ShipElement
+					"∆".colorize(:light_black).colorize(:background => :blue)
+				end
+			end
+		end
 	end
 
 end
