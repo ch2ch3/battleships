@@ -17,15 +17,18 @@ class Game
 	end
 
 	def change_turn
-		@current_player = players.push(players.shift)[0]
+		@current_player = players.reverse![0]
 	end
 
   def create_grids(x: DEFAULT_GRID_DIMENSION, y: DEFAULT_GRID_DIMENSION)
     players.each do |player|
-			player.tracking_grid=(TrackingGrid.new(x, y, PlacementGrid.new(x, y)))
+			player.firing_board=(TrackingGrid.new(x, y, PlacementGrid.new(x, y)))
     end
-		@player_2.placement_grid = @player_1.tracking_grid.placement_grid
-		@player_1.placement_grid = @player_2.tracking_grid.placement_grid
+	# @player_1.ship_board = @player_2.tracking_grid.linked_board_with_ships
+	# @player_2.ship_board = @player_1.tracking_grid.linked_board_with_ships
+
+	@player_1.ship_board = @player_2.firing_board.linked_ship_board
+	@player_2.ship_board = @player_1.firing_board.linked_ship_board
   end
 
 end

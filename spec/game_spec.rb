@@ -21,15 +21,15 @@ describe Game do
 
 	it 'initializes all the appropriate grids' do
     game.create_grids
-    expect(game.player_1.placement_grid.class).to eq(PlacementGrid)
-    expect(game.player_2.placement_grid.class).to eq(PlacementGrid)
-    expect(game.player_1.tracking_grid.class).to eq(TrackingGrid)
-    expect(game.player_2.tracking_grid.class).to eq(TrackingGrid)
+    expect(game.player_1.ship_board.class).to eq(PlacementGrid)
+    expect(game.player_2.ship_board.class).to eq(PlacementGrid)
+    expect(game.player_1.firing_board.class).to eq(TrackingGrid)
+    expect(game.player_2.firing_board.class).to eq(TrackingGrid)
   end
 
   it 'provides each player with the correct grids' do
     game.create_grids
-    expect(game.player_1.placement_grid).to eq(game.player_2.tracking_grid.placement_grid)
+    expect(game.player_1.ship_board).to eq(game.player_2.firing_board.linked_ship_board)
   end
 end
 

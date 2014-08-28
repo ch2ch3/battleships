@@ -3,14 +3,10 @@ require 'tracking_grid'
 describe TrackingGrid do
 
 	let (:tracking_grid  ) { TrackingGrid.new(2,2, placement_grid) }
-	let (:placement_grid ) { double :placement_grid, hit?: nil     }
-
-	it "is initialized with a dimension" do
-		expect(tracking_grid.dimensions).to eq [2,2]
-	end
+	let (:placement_grid ) { double :placement_grid, hit_at?: nil     }
 
 	it "is linked with a placement grid" do
-		expect(tracking_grid.placement_grid).to be placement_grid
+		expect(tracking_grid.linked_ship_board).to be placement_grid
 	end
 
 	it "can accept a shot" do
