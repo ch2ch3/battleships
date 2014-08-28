@@ -1,4 +1,4 @@
-class TrackingGrid
+class FiringBoard
 
 	attr_reader :dimensions
 	attr_accessor :grid

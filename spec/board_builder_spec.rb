@@ -1,9 +1,8 @@
-require 'grid_builder'
+require 'board_builder'
 
-describe GridBuilder do
+describe BoardBuilder do
 
 	let(:array) { Array.new(10) { Array.new(10) } }
-
 
 	context "when it receives a Firing Board" do
 
