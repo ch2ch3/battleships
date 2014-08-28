@@ -11,7 +11,7 @@ describe Carrier do
   let(:carrier)             { Carrier.new(ship_element_class)        }
 
   it 'initializes with the correct number of ship elements for its type' do
-  	expect(carrier.length).to eq(5)
+  	expect(carrier.length).to eq(Carrier::SIZE)
   end
 
   it 'can tell you how long it is' do
@@ -29,7 +29,7 @@ describe BattleShip do
   let(:battle_ship)         { BattleShip.new(ship_element_class)     }
 
   it 'initializes with the correct number of ship elements for its type' do
-    expect(battle_ship.length).to eq(4)
+    expect(battle_ship.length).to eq(BattleShip::SIZE)
   end
 
   it 'can tell you how long it is' do
@@ -47,7 +47,7 @@ describe Destroyer do
   let(:destroyer)           { Destroyer.new(ship_element_class)      }
 
   it 'initializes with the correct number of ship elements for its type' do
-    expect(destroyer.length).to eq(3)
+    expect(destroyer.length).to eq(Destroyer::SIZE)
   end
 
   it 'can tell you how long it is' do
@@ -65,7 +65,7 @@ describe Submarine do
   let(:submarine)           { Submarine.new(ship_element_class)      }
 
   it 'initializes with the correct number of ship elements for its type' do
-    expect(submarine.length).to eq(3)
+    expect(submarine.length).to eq(Submarine::SIZE)
   end
 
   it 'can tell you how long it is' do
@@ -83,7 +83,7 @@ describe PatrolBoat do
   let(:patrol_boat)         { PatrolBoat.new(ship_element_class)     }
 
   it 'initializes with the correct number of ship elements for its type' do
-    expect(patrol_boat.length).to eq(2)
+    expect(patrol_boat.length).to eq(PatrolBoat::SIZE)
   end
 
   it 'can tell you how long it is' do
