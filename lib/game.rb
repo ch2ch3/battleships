@@ -1,4 +1,7 @@
-require_relative 'player'
+require 'player'
+require 'ship'
+require 'tracking_grid'
+require 'placement_grid'
 
 class Game
 
@@ -15,12 +18,12 @@ class Game
 		@current_player = players.push(players.shift)[0]
 	end
 
-  def create_grids
-    players.each do
-      |player| player.tracking_grid=(TrackingGrid.new(10, 10, PlacementGrid.new(10,10)))
+  def create_grids(x: 10, y: 10)
+    players.each do |player|
+			player.tracking_grid=(TrackingGrid.new(x, y, PlacementGrid.new(x, y)))
     end
-  @player_2.placement_grid = @player_1.tracking_grid.placement_grid
-  @player_1.placement_grid = @player_2.tracking_grid.placement_grid
+		@player_2.placement_grid = @player_1.tracking_grid.placement_grid
+		@player_1.placement_grid = @player_2.tracking_grid.placement_grid
   end
 
 end

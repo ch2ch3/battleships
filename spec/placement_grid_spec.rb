@@ -1,6 +1,7 @@
 require 'placement_grid'
 
 describe PlacementGrid do
+
 	let(:ship_two) {
 		double :ship_two,
 		length: 2,
@@ -135,6 +136,6 @@ describe PlacementGrid do
 		allow(ship_two).to receive(:y_coordinate).and_return(1)
 		allow(ship_two).to receive(:orientation).and_return(:vertical)
 		expect( placement_grid.place(ship_two)).to be placement_grid
-end
+	end
 
 end
