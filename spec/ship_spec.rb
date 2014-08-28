@@ -2,8 +2,8 @@ require 'ship'
 
 shared_examples "a ship" do
 
-	let(:ship_element) 	{ ShipElement.new        }
-	let(:ship)			{ described_class.new     }
+	let(:ship_element) 	{ ShipElement }
+	let(:ship)			{ described_class.new(ship_element) }
 
 
 	context 'Initialization' do
@@ -12,9 +12,6 @@ shared_examples "a ship" do
 			expect(ship.elements[0].class).to eq(ShipElement)
 		end
 
-		it 'initializes with the correct number of ship elements for its type' do
-			expect(ship.elements.count).to eq(ship.size)
-		end
 	end
 
 	context 'Sunk' do
@@ -32,10 +29,6 @@ shared_examples "a ship" do
 	end
 
 	context 'Placement' do
-
-	it 'can tell you how long it is' do
-		expect(ship.length).to be (ship.size)
-	end
 
 	it 'can have its starting coordinates set' do
 		ship.placement_coordinates([1,2])

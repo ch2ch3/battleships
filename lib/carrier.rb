@@ -2,13 +2,13 @@ class Carrier < Ship
 
 	SIZE = 5
 
-	def initialize
+	def initialize(ship_elements)
 		super
-		build
+		build(ship_elements)
 	end
 
-	def build
-		SIZE.times { elements << ShipElement.new }
+	def build(ship_elements)
+		SIZE.times { elements << ship_elements }
 	end
 	
 	def size
