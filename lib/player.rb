@@ -1,35 +1,20 @@
 class Player
 
-	attr_reader :ships
-  	attr_accessor :firing_board
+	attr_reader :fleet
+  	attr_accessor :firing_board, :ship_board
 
 	def initialize
-		build_ships
-		@ships = [@carrier, @battleship, @submarine, @destroyer, @patrol_boat]
-	end
-
-	def ship_board
-		@placement_grid
-	end
-
-	def ship_board=(value)
-		@placement_grid = value
-	end
-
-	def build_ships
-		@carrier = Ship.new(:carrier)
-		@battleship = Ship.new(:battleship)
-		@submarine = Ship.new(:submarine)
-		@destroyer = Ship.new(:destroyer)
-		@patrol_boat = Ship.new(:patrol_boat)
+		@fleet = []
 	end
 	
 	def dead?
-		ships.empty?
+		fleet.empty?
 	end
 
-	def update_ships
-		ships.reject! { |ship| ship.sunk? }
+	def update_fleet
+		fleet.each { |ship| puts "You've sunk my #{ship}!" if ship.sunk? }
+		fleet.reject! { |ship| ship.sunk? }
+		puts "Game over! You lose!" if dead?
 	end
 
 end

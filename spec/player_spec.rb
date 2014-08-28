@@ -1,36 +1,37 @@
 require 'player'
-require 'ship' #let's try and get rid of this
 
 describe Player do
 
-	let(:player_1) { Player.new }
+	let(:player_1)  { Player.new                      }
+	let(:carrier)	{ double :carrier, sunk?: true    }
+	let(:submarine) { double :submarine, sunk?: false }
+	let(:destroyer) { double :destroyer, sunk?: false }
 
-	it "should be able to hold ships" do
-		expect(player_1.ships.class).to eq Array
+	def fill_fleet
+		player_1.fleet << carrier
+		player_1.fleet << submarine
+		player_1.fleet << destroyer
 	end
 
-	it "can build and hold all the ships" do
-		player_1.build_ships
-		expect(player_1.ships.count).to eq (5)
-	end
-
-	it "initializes with all their ships" do
-		expect(player_1.ships.count).to eq (5)
+	it "should be able to hold fleet" do
+		expect(player_1.fleet.class).to eq Array
 	end
 
 	it "can tell if they've lost the game" do
-		player_1.ships.delete_if { |i| !player_1.ships.empty? }
+		fill_fleet
+		player_1.fleet.delete_if { |i| !player_1.fleet.empty? }
 		expect(player_1.dead?).to be true
 	end
 
 	it "can tell if they're still in the game" do
+		fill_fleet
 		expect(player_1.dead?).to be false
 	end
 
-	it "can remove ships if they've been sunk" do
-		expect(player_1.ships[2]).to receive(:sunk?).and_return(true)
-		player_1.update_ships
-		expect(player_1.ships.count).to eq (4)
+	it "can remove fleet if they've been sunk" do
+		fill_fleet
+		player_1.update_fleet
+		expect(player_1.fleet.count).to eq (2)
 	end
 
 end
