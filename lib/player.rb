@@ -1,11 +1,11 @@
 class Player
 
-	attr_reader :ships
+	attr_reader :fleet
   	attr_accessor :firing_board
 
 	def initialize
-		build_ships
-		@ships = [@carrier, @battleship, @submarine, @destroyer, @patrol_boat]
+		build_fleet
+		@fleet = [@carrier, @battleship, @submarine, @destroyer, @patrol_boat]
 	end
 
 	def ship_board
@@ -16,7 +16,7 @@ class Player
 		@placement_grid = value
 	end
 
-	def build_ships
+	def build_fleet
 		@carrier = Ship.new(:carrier)
 		@battleship = Ship.new(:battleship)
 		@submarine = Ship.new(:submarine)
@@ -25,11 +25,11 @@ class Player
 	end
 	
 	def dead?
-		ships.empty?
+		fleet.empty?
 	end
 
-	def update_ships
-		ships.reject! { |ship| ship.sunk? }
+	def update_fleet
+		fleet.reject! { |ship| ship.sunk? }
 	end
 
 end
