@@ -19,7 +19,7 @@ class Game
 	end
 
 	def change_turn
-		@current_player = players.reverse![0]
+		@current_player = players.rotate![0]
 	end
 
 	def create_boards(x: DEFAULT_BOARD_DIMENSION, y: DEFAULT_BOARD_DIMENSION)
@@ -29,8 +29,9 @@ class Game
   end
 
   def assign_boards
-		player_1.ship_board = player_2.firing_board.linked_ship_board
-		player_2.ship_board = player_1.firing_board.linked_ship_board
+		players.each do |player|
+			player.ship_board = players[-1].firing_board.linked_ship_board
+		end
 	end
 
 	def build_fleets
