@@ -5,7 +5,7 @@ class BoardBuilder
 
 	attr_accessor :board
 
-	HEADINGS = [" "] + ("A".."J").to_a
+	HEADINGS = ([" "] + ("A".."J").to_a).map!{|heading| " #{heading} " }
 
 	def initialize(input)
 		table = []
@@ -16,7 +16,7 @@ class BoardBuilder
 			board_image = input.grid
 			table = ship_board_array_to_image(board_image)
 		end
-		@image = Terminal::Table.new :headings => HEADINGS, :rows => table
+		@image = Terminal::Table.new :headings => HEADINGS, :alignment => :center, :rows => table
 	end
 
 	def to_s
@@ -35,7 +35,7 @@ class BoardBuilder
 					"~".colorize(:blue)
 				end
 			end
-			row.unshift(array.index(row)+1)
+			row.unshift("\n#{array.index(row)+1}\n")
 		end
 
 	end

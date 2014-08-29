@@ -18,9 +18,9 @@ class Ship
 		elements.all?(&:hit)
 	end
 
-	def placement_coordinates(coordinates)
-		@x_coordinate = coordinates.first
-		@y_coordinate = coordinates.last
+	def placement_coordinates(x, y)
+		@x_coordinate = x
+		@y_coordinate = y
 	end
 
   def build(ship_element)
