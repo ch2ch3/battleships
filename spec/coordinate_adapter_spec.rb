@@ -8,19 +8,19 @@ describe FakeClass do
 
 	context 'conversion' do
 
-		it "takes a letter and returns the correct x-coordinate" do
-			expect(fake_class.to_x("A")).to eq 0
-			expect(fake_class.to_x("F")).to eq 5
+		it "takes a letter and returns the correct y-coordinate" do
+			expect(fake_class.to_y("A")).to eq 0
+			expect(fake_class.to_y("F")).to eq 5
 		end
 
-		it "takes a number and returns the correct y-coordinate" do
-			expect(fake_class.to_y(1)).to eq 0
-			expect(fake_class.to_y(6)).to eq 5
+		it "takes a number and returns the correct x-coordinate" do
+			expect(fake_class.to_x(1)).to eq 0
+			expect(fake_class.to_x(6)).to eq 5
 		end
 
 		it "returns two comma separated values in an array" do
 			expect(fake_class.return_array("A", 1)).to eq [0,0]
-			expect(fake_class.return_array("E", 8)).to eq [4,7]
+			expect(fake_class.return_array("E", 8)).to eq [7,4]
 		end
 
 	end
@@ -44,22 +44,23 @@ describe FakeClass do
 		end
 
 		it "is case-insensitive" do
-			expect(fake_class.to_x("a")).to eq fake_class.to_x("A")
-			expect(fake_class.to_x("d")).to eq fake_class.to_x("D")
+			expect(fake_class.to_y("a")).to eq fake_class.to_y("A")
+			expect(fake_class.to_y("d")).to eq fake_class.to_y("D")
 		end
 
 	end
 
 	context 'the grand finale' do
 
-		# given 4 strings, each string must convert. When the string has been converted, every string must return as an array again. 
+		# given 5 strings, each string must convert. When the string has been converted, every string must return as an array again. 
 		# be careful of the weather, it could be stormy!
 
 			it "converts player input to usable coordinates" do
-				expect(fake_class.convert("F7")).to eq([5, 6])
-				expect(fake_class.convert("G, 1")).to eq([6, 0])
-				expect(fake_class.convert("g..4")).to eq([6, 3])
-				expect(fake_class.convert("10c")).to eq([2, 9])
+				expect(fake_class.convert("F7")).to eq([6, 5])
+				expect(fake_class.convert("G, 1")).to eq([0, 6])
+				expect(fake_class.convert("g..4")).to eq([3, 6])
+				expect(fake_class.convert("10c")).to eq([9, 2])
+				expect(fake_class.convert("c2")).to eq([1, 2])
 			end
 
 	end

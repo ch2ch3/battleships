@@ -1,15 +1,15 @@
 module CoordinateAdapter
 
-	def to_x(letter)
+	def to_y(letter)
 		("A".."Z").to_a.index(letter.upcase)
 	end
 
-	def to_y(number)
+	def to_x(number)
 		number - 1
 	end
 
 	def return_array(letter, number)
-		[to_x(letter), to_y(number)]
+		[to_x(number), to_y(letter)]
 	end
 
 	def extract_letter(coordinate)
