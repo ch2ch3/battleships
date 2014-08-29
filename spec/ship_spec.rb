@@ -33,7 +33,7 @@ shared_examples "a ship" do
 	context 'Placement' do
 
 	it 'can have its starting coordinates set' do
-		ship.placement_coordinates(1,2)
+		ship.placement_coordinates([1,2])
 		expect(ship.x_coordinate).to eq 1
 		expect(ship.y_coordinate).to eq 2
 	end
