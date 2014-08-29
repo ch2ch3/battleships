@@ -13,7 +13,7 @@ class ShipBoard
 		x, y = ship.x_coordinate, ship.y_coordinate
 		ship.elements.each do |element|
 			@grid[x][y] = element
-			ship.orientation == :vertical ?  x += 1 : y += 1
+			ship.orientation == :vertical ?  y += 1 : x += 1
 			end
 		self
 	end
