@@ -19,7 +19,7 @@ class Game
 	end
 
 	def change_turn
-		@current_player = players.reverse![0]
+		@current_player = players.rotate![0]
 	end
 
 	def create_boards(x: DEFAULT_BOARD_DIMENSION, y: DEFAULT_BOARD_DIMENSION)
