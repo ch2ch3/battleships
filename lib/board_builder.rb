@@ -10,10 +10,10 @@ class BoardBuilder
 	def initialize(input)
 		table = []
 		if input.class == FiringBoard
-			board_image = input.grid
+			board_image = input.grid.dup
 			table = firing_board_array_to_image(board_image)
 		elsif input.class == ShipBoard
-			board_image = input.grid
+			board_image = input.grid.dup
 			table = ship_board_array_to_image(board_image)
 		end
 		@image = Terminal::Table.new :headings => HEADINGS, :alignment => :center, :rows => table
