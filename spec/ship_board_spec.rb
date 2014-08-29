@@ -11,7 +11,7 @@ describe ShipBoard do
 			],
 			x_coordinate: 1,
 			y_coordinate: 1,
-			orientation: :horizontal
+			orientation: :vertical
 		}
 
 	let(:ship_five) {
@@ -26,7 +26,7 @@ describe ShipBoard do
 		],
 		x_coordinate: 0,
 		y_coordinate: 2,
-		orientation: :horizontal
+		orientation: :vertical
 	}
 
   let (:ship) {
@@ -35,7 +35,7 @@ describe ShipBoard do
 		elements: :ship_element_one,
 		x_coordinate: 1,
 		y_coordinate: 1,
-		orientation: :horizontal
+		orientation: :vertical
 
 	}
 
@@ -72,23 +72,23 @@ describe ShipBoard do
 			.to raise_error(PlacementError)
 	end
 
-	it 'cannot place a 1x2 ship horizontally in the top-right corner of a 9x9 board' do
+	it 'cannot place a 1x2 ship vertically in the top-right corner of a 9x9 board' do
 		allow(ship).to receive(:length).and_return(2)
 		allow(ship).
 			to receive(:elements).
 			and_return([:ship_element_one, :ship_element_two])
 		allow(ship).to receive(:x_coordinate).and_return(8)
 		allow(ship).to receive(:y_coordinate).and_return(0)
-		allow(ship).to receive(:orientation).and_return(:horizontal)
+		allow(ship).to receive(:orientation).and_return(:vertical)
 
 		expect{ ship_board.place(ship)}
 			.to raise_error(PlacementError)
 	end
 
-	it 'cannot place a 1x5 ship vertically in square 0,7 of a 9x9 board' do
+	it 'cannot place a 1x5 ship horizontally in square 0,7 of a 9x9 board' do
 		allow(ship_five).to receive(:x_coordinate).and_return(0)
 		allow(ship_five).to receive(:y_coordinate).and_return(7)
-		allow(ship_five).to receive(:orientation).and_return(:vertical)
+		allow(ship_five).to receive(:orientation).and_return(:horizontal)
 		expect{ ship_board.place(ship_five)}
 			.to raise_error(PlacementError)
 	end
@@ -116,17 +116,17 @@ describe ShipBoard do
 		expect(ship_board.cell(2,1)).to be :ship_element_two
 	end
 
-	it 'cannot place a ship over another ship element horizontally' do
+	it 'cannot place a ship over another ship element vertically' do
 		allow(ship_five).to receive(:x_coordinate).and_return(2)
 		allow(ship_five).to receive(:y_coordinate).and_return(0)
-		allow(ship_five).to receive(:orientation).and_return(:vertical)
+		allow(ship_five).to receive(:orientation).and_return(:horizontal)
 		ship_board.place(ship_five)
 		expect{ ship_board.place(ship_two) }.to raise_error
 	end
 
-	it 'cannot place a ship over another ship element vertically' do
+	it 'cannot place a ship over another ship element horizontally' do
 		ship_board.place(ship_five)
-		allow(ship_two).to receive(:orientation).and_return(:vertical)
+		allow(ship_two).to receive(:orientation).and_return(:horizontal)
 		expect{ ship_board.place(ship_two) }.to raise_error
 	end
 
@@ -134,7 +134,7 @@ describe ShipBoard do
 		ship_board.place(ship_five)
 		allow(ship_two).to receive(:x_coordinate).and_return(5)
 		allow(ship_two).to receive(:y_coordinate).and_return(1)
-		allow(ship_two).to receive(:orientation).and_return(:vertical)
+		allow(ship_two).to receive(:orientation).and_return(:horizontal)
 		expect( ship_board.place(ship_two)).to be ship_board
 	end
 

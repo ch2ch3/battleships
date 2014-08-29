@@ -5,10 +5,10 @@ module PlacementRules
 
 	def self.obey?(ship, placement_grid)
 		x, y = ship.x_coordinate, ship.y_coordinate
-		if ship.orientation == :horizontal
+		if ship.orientation == :vertical
 			raise PlacementError if ship.length > (placement_grid.grid.length - x)
 			raise PlacementError unless row_empty?(ship, x, y, placement_grid)
-		elsif ship.orientation == :vertical
+		elsif ship.orientation == :horizontal
 			raise PlacementError if ship.length > (placement_grid.grid[x].length - y)
 			raise PlacementError unless column_empty?(ship, x, y, placement_grid)
 		end
