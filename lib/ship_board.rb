@@ -9,7 +9,7 @@ class ShipBoard
 	end
 
 	def place(ship)
-		PlacementRules.obey?(ship, self)
+		# PlacementRules.obey?(ship, self)
 		x, y = ship.x_coordinate, ship.y_coordinate
 		ship.elements.each do |element|
 			@grid[x][y] = element

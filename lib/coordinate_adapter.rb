@@ -1,11 +1,11 @@
 module CoordinateAdapter
 
-	def to_y(letter)
-		("A".."Z").to_a.index(letter.upcase)
-	end
-
 	def to_x(number)
 		number - 1
+	end
+
+	def to_y(letter)
+		("A".."Z").to_a.index(letter.upcase)
 	end
 
 	def return_array(letter, number)
