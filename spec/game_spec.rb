@@ -31,8 +31,14 @@ describe Game do
 	it 'provides each player with the correct boards' do
 	    game.create_boards
       game.assign_boards
-	    expect(game.player_1.ship_board).to eq(game.player_2.firing_board.linked_ship_board)
+	    expect(game.player_1.ship_board).to be(game.player_2.firing_board.linked_ship_board)
 	end
+
+	it 'makes sure that each player has a different shipboard' do
+		game.create_boards
+      	game.assign_boards
+      	expect(game.player_1.ship_board).not_to be(game.player_2.ship_board)
+  end
 
 	it 'provides each player with all their ships' do
 		game.build_fleets

@@ -30,7 +30,7 @@ class Game
 
 	def assign_boards
 		players.each do |player|
-			player.ship_board = players[-1].firing_board.linked_ship_board
+			player.ship_board = players[players.index(player)-1].firing_board.linked_ship_board
 		end
 	end
 
