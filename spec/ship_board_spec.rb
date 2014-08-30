@@ -72,7 +72,7 @@ describe ShipBoard do
 			.to raise_error(PlacementError)
 	end
 
-	it 'cannot place a 1x2 ship vertically in the top-right corner of a 9x9 board' do
+	it 'cannot place a 1x2 ship ups in the top-right corner of a 9x9 board' do
 		allow(ship).to receive(:length).and_return(2)
 		allow(ship).
 			to receive(:elements).
@@ -116,7 +116,7 @@ describe ShipBoard do
 		expect(ship_board.cell(2,1)).to be :ship_element_two
 	end
 
-	it 'cannot place a ship over another ship element vertically' do
+	it 'cannot place a ship over another ship element ups' do
 		allow(ship_five).to receive(:x_coordinate).and_return(2)
 		allow(ship_five).to receive(:y_coordinate).and_return(0)
 		allow(ship_five).to receive(:orientation).and_return(:horizontal)

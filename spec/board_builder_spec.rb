@@ -29,9 +29,15 @@ describe BoardBuilder do
 			expect(puts table)
 		end
 
+		it "does not change the original firing board" do
+			control_firing_board = firing_board.grid.dup
+			BoardBuilder.new(firing_board)
+			expect(firing_board.grid).to eq control_firing_board
+		end
+
 	end
 
-	context "when it creats a ship board" do
+	context "when it creates a ship board" do
 
 		it "can print out a ship board" do
 			table = BoardBuilder.new(ship_board)
@@ -41,15 +47,22 @@ describe BoardBuilder do
 		it "can print out a ship" do
 			ship_board.grid.map! {|row| row.map! {|cell| ship_element}}
 			table = BoardBuilder.new(ship_board)
-			expect (puts table)
+			expect(puts table)
 		end
 
 		it "can print out damaged ships" do
 			ship_element.hit!
 			ship_board.grid.map! {|row| row.map! {|cell| ship_element}}
 			table = BoardBuilder.new(ship_board)
-			expect (puts table)
+			expect(puts table)
 		end
+
+		it "does not change the original ship board" do
+			control_ship_board = ship_board.grid.dup
+			BoardBuilder.new(ship_board)
+			expect(ship_board.grid).to eq control_ship_board
+		end
+
 	end
 
 
