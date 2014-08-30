@@ -10,10 +10,10 @@ class BoardBuilder
 	def initialize(input)
 		table = []
 		if input.class == FiringBoard
-			board_image = input.grid.dup
+			board_image = Marshal.load(Marshal.dump(input.grid))
 			table = firing_board_array_to_image(board_image)
 		elsif input.class == ShipBoard
-			board_image = input.grid.dup
+			board_image = Marshal.load(Marshal.dump(input.grid))
 			table = ship_board_array_to_image(board_image)
 		end
 		@image = Terminal::Table.new :headings => HEADINGS, :alignment => :center, :rows => table
@@ -25,8 +25,8 @@ class BoardBuilder
 
 	def firing_board_array_to_image(array)
 
-		array.map do |row|
-			row.map do |cell|
+		array.map! do |row|
+			row.map! do |cell|
 				if cell == :hit
 					"X".colorize(:red)
 				elsif cell == :miss
@@ -42,8 +42,8 @@ class BoardBuilder
 
 	def ship_board_array_to_image(array)
 
-		array.map do |row|
-			row.map do |cell|
+		array.map! do |row|
+			row.map! do |cell|
 				if cell.class == ShipElement
 					if cell.hit
 						"∆".yellow.on_red.blink
