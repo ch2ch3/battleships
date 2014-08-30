@@ -31,8 +31,10 @@ describe BoardBuilder do
 
 		it "does not change the original firing board" do
 			control_firing_board = firing_board.grid.dup
+			control_firing_board_element = firing_board.grid[0][0]
 			BoardBuilder.new(firing_board)
 			expect(firing_board.grid).to eq control_firing_board
+			expect(firing_board.grid[0][0]).to eq control_firing_board_element
 		end
 
 	end
@@ -58,9 +60,13 @@ describe BoardBuilder do
 		end
 
 		it "does not change the original ship board" do
+			p ship_board
 			control_ship_board = ship_board.grid.dup
+			control_ship_board_element = ship_board.grid[0][0]
 			BoardBuilder.new(ship_board)
+			p ship_board
 			expect(ship_board.grid).to eq control_ship_board
+			expect(ship_board.grid[0][0]).to eq control_ship_board_element
 		end
 
 	end
