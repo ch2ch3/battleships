@@ -27,7 +27,7 @@ puts ""
 puts ""
 puts ""
 
-sleep(3)
+# sleep(3)
 system "say Welcome to Battleships"
 system "clear" or system "cls"
 
@@ -43,33 +43,33 @@ p2_firingboard = BoardBuilder.new(game.player_2.firing_board)
 
 puts "Welcome to Battleships"
 
-sleep(1)
+# sleep(1)
 
 puts "Press ENTER key to continue"
 gets.chomp
-sleep(0.5)
+# sleep(0.5)
 puts "PLACEMENT PHASE"
 puts "==============="
 puts ""
 puts "In the placement phase, you will have to place your fleet on a 10x10 grid, which looks like this:"
 puts p1_shipboard
-sleep(3)
+# sleep(3)
 
 puts "Players, here is a list of your ships, and their length to help you place them:"
-sleep(3)
+# sleep(3)
 puts ""
 puts "Aircraft carrier - length: 5"
 puts "Battleship - length: 4"
 puts "Destroyer - length: 3"
 puts "Submarine - length: 3"
 puts "Patrol boat - length: 2"
-sleep(1)
+# sleep(1)
 puts ""
 puts "Ships can be placed horizontally or vertically"
-sleep(1.5)
+# sleep(1.5)
 puts ""
 puts "Are you ready? Player 1, place your ships!"
-sleep (1)
+# sleep (1)
 
 
 # PLAYER1 PLACEMENT PHASE LOCATION MARK1
