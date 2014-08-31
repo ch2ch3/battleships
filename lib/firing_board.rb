@@ -12,7 +12,9 @@ class FiringBoard
 		@placement_grid
 	end
 
-	def fire_at(x,y)
+	def fire_at(coordinates)
+    x = coordinates.first
+    y = coordinates.last
 		raise "You've already fired here!" if coordinate_fired_at?(x,y)
 		@grid[x][y] = (linked_ship_board.hit_at?(x,y) ? :hit : :miss)
 		self

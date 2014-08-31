@@ -13,14 +13,14 @@ describe FiringBoard do
 		expect(linked_ship_board).
 			to receive(:hit_at?).
 			with(1,1)
-		expect(firing_board.fire_at(1,1)).to be firing_board
+		expect(firing_board.fire_at([1,1])).to be firing_board
 	end
 
 	it "tracks shots fired" do
 		expect(linked_ship_board).
 			to receive(:hit_at?).
 			with(1,1)
-		firing_board.fire_at(1,1)
+		firing_board.fire_at([1,1])
 		expect(firing_board.coordinate_fired_at?(1,1)).to be true
 	end
 
@@ -28,22 +28,22 @@ describe FiringBoard do
 		expect(linked_ship_board).
 			to receive(:hit_at?).
 			with(1,1)
-		firing_board.fire_at(1,1)
-		expect{ firing_board.fire_at(1,1) }.to raise_error
+		firing_board.fire_at([1,1])
+		expect{ firing_board.fire_at([1,1]) }.to raise_error
 	end
 
 	it "asks the linked ship board if a ship is at a coordinate" do
 		expect(linked_ship_board).
 			to receive(:hit_at?).
 			with(1,1).and_return(true)
-		firing_board.fire_at(1,1)
+		firing_board.fire_at([1,1])
 	end
 
 	it "sets the coordinate to 'miss' when a shot misses" do
 		allow(linked_ship_board).
 			to receive(:hit_at?).
 			with(1,1).and_return(false)
-		firing_board.fire_at(1,1)
+		firing_board.fire_at([1,1])
 		expect(firing_board.status(1,1)).to be :miss
 	end
 
@@ -51,7 +51,7 @@ describe FiringBoard do
 		allow(linked_ship_board).
 			to receive(:hit_at?).
 			with(1,1).and_return(true)
-		firing_board.fire_at(1,1)
+		firing_board.fire_at([1,1])
 		expect(firing_board.status(1,1)).to be :hit
 	end
 
