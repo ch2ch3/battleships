@@ -29,7 +29,7 @@ describe FiringBoard do
 			to receive(:hit_at?).
 			with(1,1)
 		firing_board.fire_at([1,1])
-		expect{ firing_board.fire_at([1,1]) }.to raise_error
+		expect{ firing_board.fire_at([1,1]) }.to raise_error(FiringError)
 	end
 
 	it "asks the linked ship board if a ship is at a coordinate" do

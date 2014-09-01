@@ -56,6 +56,9 @@ puts display_board(:ship_board)
   puts "(for example: B1, or F6)"
     begin
     locate_ship(ship)
+    rescue CoordinateError => e
+      puts e.message
+      retry
     rescue
       puts "Invalid input, please try again"
       retry
@@ -87,7 +90,7 @@ puts "Ok! Let's sink some ships!"
 loop do
   clear_screen
   puts @game.current_player == @game.player_1 ? "Player 1: your turn" : "Player 2: your turn"
-  puts "Your shooting board:"
+  puts "Your opponent's ships:"
   puts display_board(:firing_board)
   puts "Your ships:"
   puts display_board(:ship_board)
@@ -99,11 +102,17 @@ loop do
   puts "(e.g. B6, F10)"
   begin
   puts fire
-  sleep(0.75)
-  rescue
+  rescue FiringError => e
+    puts e.message
+    retry
+  rescue CoordinateError => e
+    puts e.message
+    retry
+  rescue 
     puts "Invalid input, please try again"
     retry
   end
+  sleep(0.75)
   @game.change_turn
   report_and_update
   break if @game.current_player.dead?

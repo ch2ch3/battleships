@@ -15,7 +15,7 @@ class FiringBoard
 	def fire_at(coordinates)
     x = coordinates.first
     y = coordinates.last
-		raise "You've already fired here!" if coordinate_fired_at?(x,y)
+		raise FiringError, "You've already fired here!" if coordinate_fired_at?(x,y)
 		@grid[x][y] = (linked_ship_board.hit_at?(x,y) ? :hit : :miss)
 		self
 	end
@@ -30,4 +30,7 @@ class FiringBoard
 		@grid[x][y]
 	end
 
+end
+
+class FiringError < StandardError
 end

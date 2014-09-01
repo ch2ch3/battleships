@@ -50,7 +50,7 @@ include CoordinateChecker
 
   def locate_ship(ship)
     coordinates = convert(gets.chomp)
-    raise ArgumentError unless valid?(coordinates[0], coordinates[1], @game.current_player.ship_board.grid)
+    raise CoordinateError, "Coordinate out of bounds!" unless valid?(coordinates[0], coordinates[1], @game.current_player.ship_board.grid)
     ship.placement_coordinates(coordinates)
   end
 
@@ -64,7 +64,7 @@ include CoordinateChecker
 
   def fire
     coordinates = convert(gets.chomp)
-    raise ArgumentError unless valid?(coordinates[0], coordinates[1], @game.current_player.firing_board.grid)
+    raise CoordinateError, "Coordinate out of bounds!" unless valid?(coordinates[0], coordinates[1], @game.current_player.firing_board.grid)
     @game.current_player.firing_board.fire_at(coordinates)
     @game.current_player.firing_board.status(coordinates) == :hit ? "It's a hit!" : "It's a miss!"
   end
@@ -79,4 +79,7 @@ include CoordinateChecker
     end
     @game.current_player.update_fleet
   end
+end
+
+class CoordinateError
 end
