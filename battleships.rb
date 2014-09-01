@@ -85,7 +85,6 @@ end
 
 puts "Ok! Let's sink some ships!"
 loop do
-<<<<<<< HEAD
   clear_screen
   puts @game.current_player == @game.player_1 ? "Player 1: your turn" : "Player 2: your turn"
   puts "Your shooting board:"
