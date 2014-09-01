@@ -51,17 +51,31 @@ puts display_board(:ship_board)
 # sleep (1)
 
 2.times do @game.current_player.fleet.each do |ship|
+  begin
   puts "Here is your #{ship.class.to_s.downcase} (length: #{ship.length}). Please provide the coordinates for the front of the boat:"
   puts "(for example: B1, or F6)"
-  locate_ship(ship)
-
-  puts "Please provide a ship orientation:"
-  puts "1. Horizontal"
-  puts "2. Vertical"
-  orient_ship(ship)
-  place_ship(ship)
-  clear_screen
-  puts display_board(:ship_board)
+    begin
+    locate_ship(ship)
+    rescue
+      puts "Invalid input, please try again"
+      retry
+    end
+    puts "Please provide a ship orientation:"
+    puts "1. Horizontal"
+    puts "2. Vertical"
+    begin
+    orient_ship(ship)
+    rescue 
+      puts "Invalid input, please try again"
+      retry
+    end
+    place_ship(ship)
+    rescue PlacementError
+      puts "Invalid placement, please try again"
+      retry
+    end
+    clear_screen
+    puts display_board(:ship_board)
   end
   clear_screen
   @game.change_turn
@@ -83,7 +97,12 @@ loop do
     end
   puts "Please provide the coordinates of where you would like to fire:"
   puts "(e.g. B6, F10)"
+  begin
   fire
+  rescue
+    puts "Invalid input, please try again"
+    retry
+  end
   @game.change_turn
   report_and_update
   break if @game.current_player.dead?
