@@ -24,7 +24,9 @@ class FiringBoard
 		not @grid[x][y].nil?
 	end
 
-	def status(x,y)
+	def status(coordinates)
+    x = coordinates.first
+    y = coordinates.last
 		@grid[x][y]
 	end
 

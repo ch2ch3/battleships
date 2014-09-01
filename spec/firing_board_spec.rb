@@ -44,7 +44,7 @@ describe FiringBoard do
 			to receive(:hit_at?).
 			with(1,1).and_return(false)
 		firing_board.fire_at([1,1])
-		expect(firing_board.status(1,1)).to be :miss
+		expect(firing_board.status([1,1])).to be :miss
 	end
 
 	it "sets the coordinate to 'hit' when a shot hits a ship" do
@@ -52,7 +52,7 @@ describe FiringBoard do
 			to receive(:hit_at?).
 			with(1,1).and_return(true)
 		firing_board.fire_at([1,1])
-		expect(firing_board.status(1,1)).to be :hit
+		expect(firing_board.status([1,1])).to be :hit
 	end
 
 

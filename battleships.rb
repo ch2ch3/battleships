@@ -70,11 +70,9 @@ puts display_board(:ship_board)
 end
 
 puts "Ok! Let's sink some ships!"
-@game.change_turn
-until @game.current_player.dead? do
-  @game.current_player.update_fleet
-  @game.change_turn
+loop do
   clear_screen
+  puts @game.current_player == @game.player_1 ? "Player 1: your turn" : "Player 2: your turn"
   puts "Your shooting board:"
   puts display_board(:firing_board)
   puts "Your ships:"
@@ -86,4 +84,10 @@ until @game.current_player.dead? do
   puts "Please provide the coordinates of where you would like to fire:"
   puts "(e.g. B6, F10)"
   fire
+  @game.change_turn
+  report_and_update
+  break if @game.current_player.dead?
 end
+
+puts "Congratulations! You win!"
+system "say Congratulations! You win!"
