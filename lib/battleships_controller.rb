@@ -61,18 +61,17 @@ include CoordinateAdapter
   def fire
     fire_coord = convert(gets.chomp)
     @game.current_player.firing_board.fire_at(fire_coord)
-    puts @game.current_player.firing_board.status(fire_coord) == :hit ? "It's a hit!" : "It's a miss!"
-    sleep(1)
+    @game.current_player.firing_board.status(fire_coord) == :hit ? "It's a hit!" : "It's a miss!"
   end
 
   def report_and_update
-    @game.current_player.fleet.each do |ship| 
+    @game.current_player.fleet.each do |ship|
       if ship.sunk?
         puts "You sunk my #{ship.class.to_s.downcase}!"
         system "say You sunk my #{ship.class.to_s.downcase}!"
         sleep(1.0)
       end
     end
-    @game.current_player.update_fleet 
+    @game.current_player.update_fleet
   end
 end
