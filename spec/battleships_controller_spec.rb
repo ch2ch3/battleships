@@ -1,0 +1,1 @@
+require 'battleships_controller'

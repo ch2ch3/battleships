@@ -1,11 +1,13 @@
 require "./lib/game"
 require "./lib/board_builder"
 require "./lib/coordinate_adapter"
+require "./lib/coordinate_checker"
 require 'pry'
 
 module GameController
 
 include CoordinateAdapter
+include CoordinateChecker
 
   def clear_screen
     system "clear" or system "cls"

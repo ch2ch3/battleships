@@ -11,7 +11,7 @@ module PlacementRules
 		elsif ship.orientation == :horizontal
 			raise PlacementError if ship.length > (placement_grid.grid[x].length - y)
 			raise PlacementError unless column_empty?(ship, x, y, placement_grid)
-    end
+    	end
 	end
 
 	def self.row_empty?(ship, x, y, placement_grid)
