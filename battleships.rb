@@ -1,8 +1,8 @@
 require "pry"
 require "./lib/game"
 require "./lib/board_builder"
-require "./lib/coordinate_adapter"
 require "./lib/battleships_controller"
+require "./lib/coordinate_adapter"
 
 include GameController
 include CoordinateAdapter
@@ -98,7 +98,8 @@ loop do
   puts "Please provide the coordinates of where you would like to fire:"
   puts "(e.g. B6, F10)"
   begin
-  fire
+  puts fire
+  sleep(0.75)
   rescue
     puts "Invalid input, please try again"
     retry

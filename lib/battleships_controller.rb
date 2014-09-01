@@ -49,7 +49,11 @@ include CoordinateChecker
   end
 
   def locate_ship(ship)
-    ship.placement_coordinates(convert(gets.chomp))
+    coordinates = convert(gets.chomp)
+    until valid?(coordinates[0], coordinates[1], @game.current_player.ship_board.grid)
+      coordinates = convert(gets.chomp)
+    end
+    ship.placement_coordinates(coordinates)
   end
 
   def orient_ship(ship)
