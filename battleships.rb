@@ -10,7 +10,7 @@ include CoordinateAdapter
 clear_screen
 
 display_logo
-# sleep(3)
+sleep(3)
 system "say Welcome to Battleships"
 
 clear_screen
@@ -19,36 +19,36 @@ game_create
 
 puts "Welcome to Battleships"
 
-# sleep(1)
+sleep(1)
 
 puts "Press ENTER key to continue"
 gets.chomp
-# sleep(0.5)
+sleep(0.5)
 puts "PLACEMENT PHASE"
 puts "==============="
 puts ""
 puts "In the placement phase, you will have to place your fleet on a 10x10 grid, which looks like this:"
 
 display_board(:ship_board)
-# sleep(3)
+sleep(3)
 
 puts "Players, here is a list of your ships, and their length to help you place them:"
-# sleep(3)
+sleep(3)
 puts ""
 puts "Aircraft carrier - length: 5"
 puts "Battleship - length: 4"
 puts "Destroyer - length: 3"
 puts "Submarine - length: 3"
 puts "Patrol boat - length: 2"
-# sleep(1)
+sleep(1)
 puts ""
 puts "Ships can be placed horizontally or vertically"
-# sleep(1.5)
+sleep(1.5)
 puts ""
 puts "Are you ready? Player 1, place your ships!"
 clear_screen
 puts display_board(:ship_board)
-# sleep (1)
+sleep (1)
 
 @game.players.count.times do @game.current_player.fleet.each do |ship|
   begin
@@ -75,6 +75,9 @@ puts display_board(:ship_board)
     place_ship(ship)
     rescue PlacementError
       puts "Invalid placement, please try again"
+      retry
+    rescue
+      puts "Invalid input, please try again"
       retry
     end
     clear_screen
