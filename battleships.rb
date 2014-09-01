@@ -9,27 +9,7 @@ include CoordinateAdapter
 
 clear_screen
 
-puts "              ``                                           "
-puts "               `                                           "
-puts "               `                                           "
-puts "               #                                           "
-puts "               '` `'  ``                                   "
-puts "              @#. `@`                                      "
-puts "              ##: ;'```                                    "
-puts "              ##`.@@#@@                                :,@."
-puts "             .#@#@#@@@@:#+.,`                          `   "
-puts " ::::::::::@;:#@@@@@@@@:@+:@@,:::@@##@+::::::::::::::;     "
-puts "  #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#      "
-puts " @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@`      "
-puts "  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@       "
-puts "              TEAM YARRRRSPEC PRESENTS:                    "
-puts "                                                           "
-puts "                   BATTLESHIPS                             "
-puts ""
-puts ""
-puts ""
-puts ""
-
+display_logo
 # sleep(3)
 system "say Welcome to Battleships"
 
