@@ -2,7 +2,7 @@ require "pry"
 require "./lib/game"
 require "./lib/board_builder"
 require "./lib/coordinate_adapter"
-require "./battleships_controller"
+require "./lib/battleships_controller"
 
 include GameController
 include CoordinateAdapter
