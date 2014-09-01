@@ -50,7 +50,7 @@ clear_screen
 puts display_board(:ship_board)
 # sleep (1)
 
-2.times do @game.current_player.fleet.each do |ship|
+@game.players.count.times do @game.current_player.fleet.each do |ship|
   begin
   puts "Here is your #{ship.class.to_s.downcase} (length: #{ship.length}). Please provide the coordinates for the front of the boat:"
   puts "(for example: B1, or F6)"
@@ -85,6 +85,7 @@ end
 
 puts "Ok! Let's sink some ships!"
 loop do
+<<<<<<< HEAD
   clear_screen
   puts @game.current_player == @game.player_1 ? "Player 1: your turn" : "Player 2: your turn"
   puts "Your shooting board:"
