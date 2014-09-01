@@ -34,8 +34,8 @@ include CoordinateAdapter
   puts ""
   end
 
-  def game_create
-    @game = Game.new
+  def game_create(class_of_game)
+    @game = class_of_game.new
     @game.create_boards
     @game.assign_boards
     @game.build_fleets
