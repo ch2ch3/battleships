@@ -23,4 +23,20 @@ describe TestGame do
 		expect(test_game.valid?(-5, 3, grid_to_check)).to be false
 	end
 
+	it "knows that (0, 0) is inside a 5x5 grid" do
+		expect(test_game.valid?(0, 0, grid_to_check)).to be true
+	end
+
+	it "knows that (5, 5) is inside a 5x5 grid" do
+		expect(test_game.valid?(5, 5, grid_to_check)).to be true
+	end
+
+	it "knows that ('erik', 'hannibal') is not inside a 5x5 grid" do
+		expect(test_game.valid?('erik', 'hannibal', grid_to_check)).to be false
+	end
+
+	it "knows that (1, 'hannibal') is not inside a 5x5 grid" do
+		expect(test_game.valid?(1, 'hannibal', grid_to_check)).to be false
+	end
+
 end
