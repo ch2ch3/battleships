@@ -39,14 +39,26 @@ describe ShipBoard do
 
 	}
 
-  let ( :ship_board            )  { ShipBoard.new(9,9) }
+  let ( :ship_board            )  { ShipBoard.new(2,9) }
   let ( :ship_board_two_by_two )  { ShipBoard.new(2,2) }
   let ( :ship_element              )  { double :ship_element   }
+	let ( :two_d_9_length_grid  ) { Array.new(9) { Array.new(9) } }
+	let ( :three_d_9_length_grid  )  { Array.new(9) {
+																			Array.new(9) {
+																				Array.new(9)
+																			}
+																		}
+																	}
 
 
-	it 'is initialized with dimensions' do
-		expect(ship_board).
-			to eq ship_board
+	it 'is initialized with n dimensions' do
+		two_d_9_length_grid = Array.new(9) { Array.new(9) }
+		expect(ship_board.grid).to eq two_d_9_length_grid
+	end
+
+	it 'is initialized with n dimensions' do
+		ship_board_three = ShipBoard.new(3, 9)
+		expect(ship_board_three.grid).to eq three_d_9_length_grid
 	end
 
 	it 'can place a ship in the specified coordinates' do

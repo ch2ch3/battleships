@@ -4,8 +4,8 @@ class ShipBoard
 
 	attr_reader :grid
 
-	def initialize(x,y)
-		@grid = Array.new(x) { Array.new(y) }
+	def initialize(dimensionality, cardinality)
+		@grid = n_dimensional_array(dimensionality, cardinality)
 	end
 
 	def place(ship)
@@ -25,6 +25,12 @@ class ShipBoard
 
 	def cell(x, y)
 		@grid[x][y]
+	end
+
+	def n_dimensional_array(dimensionality, cardinality)
+		return Array.new(cardinality) if dimensionality == 1
+		dimensionality = dimensionality - 1
+		Array.new(cardinality) { n_dimensional_array(dimensionality, cardinality) }
 	end
 
 end
