@@ -3,10 +3,18 @@ require 'game'
 describe Game do
 
 	let(:game) { Game.new }
+  let(:player_1) { double :player }
+  let(:player_2) { double :player }
 
-	it 'initializes with 2 players' do
-		expect(game.players.count).to be (2)
+
+	it 'initializes with the ability to hold players' do
+		expect(game.players.class).to be (Array)
 	end
+
+  it 'can add players' do
+    game.add_player(player_1)
+    expect(game.players.count).to be (1)
+  end
 
 	it 'knows whose turn it is' do
 		expect(game.respond_to?(:current_player)).to be true
