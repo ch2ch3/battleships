@@ -13,11 +13,15 @@ class Game
 
 	def initialize
 		@players = []
-		@current_player = player.first
 	end
+
+  def current_player
+    @current_player ||= players[0]
+  end
 
   def add_player(player)
     players << player
+    @current_player = players[0]
   end
 
 	def change_turn
