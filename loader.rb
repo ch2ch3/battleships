@@ -1,8 +1,0 @@
-require './lib/ship_element'
-require './lib/ship'
-require './lib/ship_board'
-require './lib/firing_board'
-require './lib/game'
-require './lib/player'
-require './lib/board_builder'
-require './lib/ship_subclass'

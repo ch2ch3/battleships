@@ -3,7 +3,7 @@ class FiringBoard
 	attr_reader :dimensions
 	attr_accessor :grid
 
-	def initialize(x,y, placement_grid)
+	def initialize(placement_grid)
 		@grid = Array.new(x) { Array.new(y) }
 		@placement_grid = placement_grid
 	end

@@ -9,9 +9,8 @@ describe ShipBoard do
 				:ship_element_two_one,
 				:ship_element__two_two,
 			],
-			x_coordinate: 1,
-			y_coordinate: 1,
-			orientation: :vertical
+			coordinates: [1,1],
+			orientation: 1
 		}
 
 	let(:ship_five) {
@@ -24,19 +23,16 @@ describe ShipBoard do
 			:ship_element_four,
 			:ship_element_five
 		],
-		x_coordinate: 0,
-		y_coordinate: 2,
-		orientation: :vertical
+		coordinates: [0,2],
+		orientation: 1
 	}
 
   let (:ship) {
 		double :ship,
 		length: 1,
-		elements: :ship_element_one,
-		x_coordinate: 1,
-		y_coordinate: 1,
-		orientation: :vertical
-
+		elements: [:ship_element_one],
+		coordinates: [1,1],
+		orientation: 1
 	}
 
   let ( :ship_board            )  { ShipBoard.new(2,9) }
@@ -52,21 +48,34 @@ describe ShipBoard do
 
 
 	it 'is initialized with n dimensions' do
-		two_d_9_length_grid = Array.new(9) { Array.new(9) }
-		expect(ship_board.grid).to eq two_d_9_length_grid
-	end
-
-	it 'is initialized with n dimensions' do
 		ship_board_three = ShipBoard.new(3, 9)
 		expect(ship_board_three.grid).to eq three_d_9_length_grid
 	end
 
+	it 'knows its dimensions' do
+		expect(ShipBoard.new(5,2).dimensions).to eq 5
+	end
+
+	it 'can return the value at a cells coordinates in 3D' do
+		ship_board_three_dee = ShipBoard.new(3,9)
+		ship_board_three_dee.grid[0][1][2] = "Bob"
+		expect(ship_board_three_dee.cell([0,1,2])).to eq "Bob"
+	end
+
+	it 'can return the value at a cells coordinate in 8D' do
+		ship_board = ShipBoard.new(8,8)
+		ship_board.grid[1][2][3][4][5][6][7][8] = "Chris"
+		expect(ship_board.cell([1,2,3,4,5,6,7,8])).to eq "Chris"
+	end
+
+	it 'can set the value of cells in 3D' do
+		ship_board_three_dee = ShipBoard.new(3,9)
+		ship_board_three_dee.set_cell([0,1,2], "Bob")
+		expect(ship_board_three_dee.cell([0,1,2])).to eq "Bob"
+	end
+
 	it 'can place a ship in the specified coordinates' do
-		allow(ship).to receive(:length).and_return(1)
-		allow(ship).
-			to receive(:elements).
-			and_return([:ship_element_one])
-		expect(ship_board.place(ship)).to eq ship_board
+		expect(ship_board.place(ship))
 	end
 
 	it 'cannot place a ship in a cell that is already occupied' do
@@ -74,7 +83,6 @@ describe ShipBoard do
 		allow(ship).
 			to receive(:elements).
 			and_return([:ship_element_one])
-
 		ship_board.place(ship)
 		expect{ ship_board.place(ship) }.to raise_error
 	end
@@ -84,24 +92,22 @@ describe ShipBoard do
 			.to raise_error(PlacementError)
 	end
 
-	it 'cannot place a 1x2 ship ups in the top-right corner of a 9x9 board' do
+	it 'cannot place a 1x2 ship horizontally in the top-right corner of a 9x9 board' do
 		allow(ship).to receive(:length).and_return(2)
 		allow(ship).
 			to receive(:elements).
 			and_return([:ship_element_one, :ship_element_two])
-		allow(ship).to receive(:x_coordinate).and_return(8)
-		allow(ship).to receive(:y_coordinate).and_return(0)
-		allow(ship).to receive(:orientation).and_return(:vertical)
+		allow(ship).to receive(:coordinates).and_return([8,0])
+		allow(ship).to receive(:orientation).and_return(0)
 
 		expect{ ship_board.place(ship)}
 			.to raise_error(PlacementError)
 	end
 
 	it 'cannot place a 1x5 ship horizontally in square 0,7 of a 9x9 board' do
-		allow(ship_five).to receive(:x_coordinate).and_return(0)
-		allow(ship_five).to receive(:y_coordinate).and_return(7)
-		allow(ship_five).to receive(:orientation).and_return(:horizontal)
-		expect{ ship_board.place(ship_five)}
+		allow(ship_five).to receive(:coordinates).and_return([7,0])
+		allow(ship_five).to receive(:orientation).and_return(0)
+		expect{ ship_board.place(ship_five) }
 			.to raise_error(PlacementError)
 	end
 
@@ -110,44 +116,45 @@ describe ShipBoard do
 		allow(ship).to receive(:elements).and_return([ship_element])
 		ship_board.place(ship)
 		expect(ship_element).to receive(:hit!).and_return(true)
-		ship_board.hit_at?(1,1)
+		ship_board.hit_at?([1,1])
 	end
 
 	it 'returns false when there is no ship element at the coordinate being fired at' do
-		expect(ship_board.hit_at?(3,3)).to be false
+		expect(ship_board.hit_at?( [3,3] )).to be false
 	end
 
 	it 'places ship elements in the expected board location' do
 		allow(ship).to receive(:length).and_return(2)
+		allow(ship).to receive(:orientation).and_return(0)
 		allow(ship).
 			to receive(:elements).
 			and_return([:ship_element_one, :ship_element_two])
 		ship_board.place(ship)
-		expect(ship_board.cell(0,1)).to be nil
-		expect(ship_board.cell(1,1)).to be :ship_element_one
-		expect(ship_board.cell(2,1)).to be :ship_element_two
+		expect(ship_board.cell([0,1])).to be nil
+		expect(ship_board.cell([1,1])).to be :ship_element_one
+		expect(ship_board.cell([2,1])).to be :ship_element_two
 	end
 
-	it 'cannot place a ship over another ship element ups' do
-		allow(ship_five).to receive(:x_coordinate).and_return(2)
-		allow(ship_five).to receive(:y_coordinate).and_return(0)
-		allow(ship_five).to receive(:orientation).and_return(:horizontal)
+	it 'cannot place a ship over another ship element vertically' do
+		allow(ship_five).to receive(:coordinates).and_return([0, 1])
+		allow(ship_five).to receive(:orientation).and_return(0)
 		ship_board.place(ship_five)
 		expect{ ship_board.place(ship_two) }.to raise_error
 	end
 
 	it 'cannot place a ship over another ship element horizontally' do
+		allow(ship_five).to receive(:coordinates).and_return([2, 0])
 		ship_board.place(ship_five)
-		allow(ship_two).to receive(:orientation).and_return(:horizontal)
+		allow(ship_two).to receive(:orientation).and_return(0)
 		expect{ ship_board.place(ship_two) }.to raise_error
 	end
 
 	it 'will allow ships to be placed touching' do
+		allow(ship_five).to receive(:coordinates).and_return([2, 0])
 		ship_board.place(ship_five)
-		allow(ship_two).to receive(:x_coordinate).and_return(5)
-		allow(ship_two).to receive(:y_coordinate).and_return(1)
-		allow(ship_two).to receive(:orientation).and_return(:horizontal)
-		expect( ship_board.place(ship_two)).to be ship_board
+		allow(ship_two).to receive(:coordinates).and_return([2, 5])
+		allow(ship_two).to receive(:orientation).and_return(0)
+		expect( ship_board.place(ship_two))
 	end
 
 end
