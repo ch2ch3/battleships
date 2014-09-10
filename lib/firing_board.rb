@@ -1,33 +1,28 @@
-class FiringBoard
+require_relative 'board'
 
-	attr_reader :dimensions
-	attr_accessor :grid
+class FiringBoard < Board
 
-	def initialize(placement_grid)
-		@grid = Array.new(x) { Array.new(y) }
-		@placement_grid = placement_grid
-	end
+	attr_reader :linked_ship_board
 
-	def linked_ship_board
-		@placement_grid
+	def initialize(ship_board)
+		@depth = ship_board.depth
+		@extension = ship_board.extension
+		@linked_ship_board = ship_board
+		@grid = n_dimensional_array(@depth, @extension)
 	end
 
 	def fire_at(coordinates)
-    x = coordinates.first
-    y = coordinates.last
-		raise "You've already fired here!" if coordinate_fired_at?(x,y)
-		@grid[x][y] = (linked_ship_board.hit_at?(x,y) ? :hit : :miss)
+		raise "You've already fired here!" if coordinate_fired_at?(coordinates)
+		set_cell(coordinates, (linked_ship_board.hit_at?(coordinates) ? :hit : :miss))
 		self
 	end
 
-	def coordinate_fired_at?(x,y)
-		not @grid[x][y].nil?
+	def coordinate_fired_at?(coordinates)
+		not cell(coordinates).nil?
 	end
 
 	def status(coordinates)
-    x = coordinates.first
-    y = coordinates.last
-		@grid[x][y]
+		cell(coordinates)
 	end
 
 end

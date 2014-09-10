@@ -57,15 +57,15 @@ describe ShipBoard do
 	end
 
 	it 'can return the value at a cells coordinates in 3D' do
-		ship_board_three_dee = ShipBoard.new(3,9)
-		ship_board_three_dee.grid[0][1][2] = "Bob"
-		expect(ship_board_three_dee.cell([0,1,2])).to eq "Bob"
+		ship_board_three_d = ShipBoard.new(3,9)
+		ship_board_three_d.grid[0][1][2] = "Bob"
+		expect(ship_board_three_d.cell([0,1,2])).to eq "Bob"
 	end
 
 	it 'can return the value at a cells coordinate in 8D' do
-		ship_board = ShipBoard.new(8,8)
-		ship_board.grid[1][2][3][4][5][6][7][8] = "Chris"
-		expect(ship_board.cell([1,2,3,4,5,6,7,8])).to eq "Chris"
+		ship_board_eight_d = ShipBoard.new(8,4)
+		ship_board_eight_d.grid[1][2][3][3][3][3][3][3] = "Chris"
+		expect(ship_board_eight_d.cell([1,2,3,3,3,3,3,3])).to eq "Chris"
 	end
 
 	it 'can set the value of cells in 3D' do
