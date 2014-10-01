@@ -1,7 +1,7 @@
 Battleships
 ===========
 
-[Ethel](https://github.com/ch2ch3), [Andy](https://github.com/andy010), [Spike](https://github.com/spike01), and [Dave](https://github.com/gypsydave5) (aka Team *YARRR!spec*) set sail for adventure on the week 4 task at
+[Andy](https://github.com/andy010), [Spike](https://github.com/spike01), [Dave](https://github.com/gypsydave5), and I (aka Team *YARRR!spec*) set sail for adventure on the week 4 task at
 Makers, creating the game of [Battleships](https://www.youtube.com/watch?v=HkZeUa53Jyg).
 
 ![IT'S A HIT!](https://raw.githubusercontent.com/gypsydave5/battleships/master/images/its_a_hit.gif)
